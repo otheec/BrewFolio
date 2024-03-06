@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "d9JvOZ6CCDN0ceAJG0DUZD5RzobINcTt8YvO+P3IplA=",
+  "Source": "BrewFolioServer",
+  "BasePath": "_content/BrewFolioServer",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
