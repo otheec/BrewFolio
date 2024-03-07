@@ -6,9 +6,9 @@ BrewFolio is a full-stack application designed for (craft) beer and (mini) brewe
 
 - **Brewery Management**: Add, edit, and view detailed information about breweries.
 - **Beer Catalog**: Manage a comprehensive list of beers, including descriptions, brewery associations, and more.
-- **User Authentication**: Utilize ASP.NET Core Identity for robust user authentication and management.
 - **Data Import/Export**: Easily upload and download CSV files for bulk data management.
 - **Responsive Design**: A front-end built with React and Bootstrap ensures a seamless experience across all devices.
+- **User Authentication**: Utilize ASP.NET Core Identity for robust user authentication and management.
 
 ## Prerequisites
 
