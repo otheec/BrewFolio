@@ -1,6 +1,6 @@
 # BrewFolio Project
 
-BrewFolio is a modern, full-stack application designed for beer enthusiasts and brewery managers. Built with ASP.NET 8 and React, it provides a secure and intuitive platform to manage and explore breweries and beers. The application emphasizes ease of use, data management, and security.
+BrewFolio is a full-stack application designed for (craft) beer and (mini) brewery enthusiasts & managers. Built with ASP.NET 8 and React, it provides a secure and intuitive platform to manage and explore breweries and beers. The application emphasizes ease of use, data management, and security.
 
 ## Key Features
 
