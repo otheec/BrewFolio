@@ -19,7 +19,7 @@ namespace BrewFolioServer.WebApi.Controller
             _fetcherService = fetcherService;
         }
 
-        [Authorize]
+        /*[Authorize]
         [HttpGet]
         public async Task<ActionResult<List<BreweryStatus>>> UploadFetchedCSV()
         {
@@ -33,7 +33,7 @@ namespace BrewFolioServer.WebApi.Controller
             await _fetcherService.AddFetchedCSVDataAsync(fetcher.Breweries, fetcher.Beers, fetcher.Types, fetcher.Statuses);
 
             return Ok();
-        }
+        }*/
 
         [Authorize]
         [HttpPost("upload")]

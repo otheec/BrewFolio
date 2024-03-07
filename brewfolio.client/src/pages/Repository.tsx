@@ -1,17 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { UtilityService } from '../api/UtilityService';
 
 const Repository: React.FC = () => {
+    const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-    const handleUploadClick = () => {
-        alert("Upload your CSV file.");
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files && event.target.files[0]) {
+            setSelectedFile(event.target.files[0]);
+        }
+    };
+
+    const handleUploadClick = async () => {
+        if (selectedFile) {
+            try {
+                await UtilityService.uploadBreweries(selectedFile);
+                alert("File uploaded successfully.");
+            } catch (error) {
+                console.error("Upload failed", error);
+                alert("Upload failed.");
+            }
+        } else {
+            alert("Please select a file to upload.");
+        }
     };
 
     const handleDownloadClick = () => {
-        alert("Download your CSV file.");
+        alert("Download functionality not implemented.");
     };
-
 
     return(
         <>
@@ -25,12 +42,8 @@ const Repository: React.FC = () => {
                 <div className="p-3 my-2 bg-body-secondary border rounded-3">
                     <div className="mb-3">
                         <h2>Upload CSV</h2>
-                    </div>
-                    <div className="mb-3">
                         <p>Elevate your collection - upload your CSV and let the journey unfold!</p>
-                    </div>
-                    <div className="mb-3">
-                        <input type="file" className="form-control form-control-sm" aria-label="Small file input example"></input>
+                        <input type="file" onChange={handleFileChange} className="form-control form-control-sm" aria-label="Small file input example"></input>
                     </div>
                     <div className="d-flex justify-content-end">
                         <button type="button" className="btn btn-outline-secondary" onClick={handleUploadClick}>
@@ -41,8 +54,6 @@ const Repository: React.FC = () => {
                 <div className="p-3 my-2 bg-body-secondary border rounded-3">
                     <div className="mb-3">
                         <h2>Download CSV</h2>
-                    </div>
-                    <div className="mb-3">
                         <p>Export your data efficiently with our CSV download service</p>
                     </div>
                     <div className="d-flex justify-content-end">

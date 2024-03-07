@@ -66,6 +66,8 @@ namespace BrewFolioServer.Application.Utility
                         }
                     }
 
+                    brewery.Visited = visited;
+
                     if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(longName)) Breweries.Add(brewery);
                 }
                 Console.WriteLine($"Fetched {Breweries.Count} breweries.");
