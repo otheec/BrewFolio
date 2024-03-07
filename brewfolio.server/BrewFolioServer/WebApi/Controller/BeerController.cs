@@ -1,4 +1,5 @@
 ﻿using BrewFolioServer.Application.Interface;
+using BrewFolioServer.Application.Service;
 using BrewFolioServer.Domain.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

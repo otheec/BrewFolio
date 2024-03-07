@@ -6,23 +6,35 @@ import { BreweryService } from '../api/BreweryService';
 import { useEffect, useState } from 'react';
 import { PlaceholderIcon, TrashIcon} from '../components/SvgIcons';
 import { Link} from "react-router-dom";
+import Pagination from '../components/Pagination';
 
 const Breweries: React.FC = () => {
 
   const [breweries, setBreweries] = useState<Brewery[]>([]);
+  const [pageSize] = useState(50);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalBreweries, setTotalBeers] = useState(0);
 
   useEffect(() => {
     const fetchBreweries = async () => {
       try {
-        const breweries = await BreweryService.getAllBreweries();
-        setBreweries(breweries);
+        const paginatedResponse = await BreweryService.getPaginatedBreweries(currentPage, pageSize);
+        setBreweries(paginatedResponse.breweries);
+        setTotalBeers(paginatedResponse.totalCount);
       } catch (error) {
         console.error(error);
       }
+
     };
 
     fetchBreweries();
-  }, []);
+  }, [currentPage, pageSize]);
+
+  const totalPages = Math.ceil(totalBreweries / pageSize);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
 
   const handleAddBreweryClick = () => {
     alert("Open the form to add a new brewery.");
@@ -51,9 +63,7 @@ const Breweries: React.FC = () => {
         </div>
       </div>
       ))}
-      <small className="d-block text-end mt-3">
-        <>See all beers</>
-      </small>
+      <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
     </div>
   </main>
   <Footer/>

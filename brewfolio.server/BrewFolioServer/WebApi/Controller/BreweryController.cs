@@ -17,6 +17,17 @@ namespace BrewFolioServer.WebApi.Controller
         }
 
         [Authorize]
+        [HttpGet("paginated")]
+        public async Task<IActionResult> GetPaginated(int pageNumber = 1, int pageSize = 50)
+        {
+            var breweries = await _breweryService.GetPaginatedBreweriesAsync(pageNumber, pageSize);
+            if (breweries == null) return NotFound("Breweries not found");
+
+            var totalCount = await _breweryService.GetTotalBreweriesCountAsync();
+            return Ok(new { totalCount, breweries });
+        }
+
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Brewery>>> GetAll()
         {

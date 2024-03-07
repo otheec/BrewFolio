@@ -5,6 +5,8 @@ namespace BrewFolioServer.Infrastructure.Interface
 {
     public interface IBreweryRepository
     {
+        Task<IEnumerable<BreweryDTO>> GetPaginatedAsync(int pageNumber, int pageSize);
+        Task<int> GetTotalCountAsync();
         Task<IEnumerable<BreweryDTO>> GetAllAsync();
         Task<BreweryDTO> GetByIdAsync(int id);
         Task<Brewery> GetByLongNameAsync(string longName);

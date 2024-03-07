@@ -8,10 +8,11 @@ import { Link } from "react-router-dom";
 import Pagination from '../components/Pagination';
 
 const Beers: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize] = useState(50); // Assuming 50 beers per page
-  const [totalBeers, setTotalBeers] = useState(0);
+
   const [beers, setBeers] = useState<Beer[]>([]);
+  const [pageSize] = useState(50);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalBeers, setTotalBeers] = useState(0);
 
   useEffect(() => {
     const fetchPaginatedBeers = async () => {

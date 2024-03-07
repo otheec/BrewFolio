@@ -15,6 +15,33 @@ namespace BrewFolioServer.Infrastructure.Repository
             _context = context;
         }
 
+        public async Task<IEnumerable<BreweryDTO>> GetPaginatedAsync(int pageNumber, int pageSize)
+        {
+            return await _context.Breweries
+                .OrderBy(b => b.Name) // Adjust ordering as needed
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .Select(brewery => new BreweryDTO
+                {
+                    Id = brewery.Id,
+                    Name = brewery.Name,
+                    LongName = brewery.LongName,
+                    Type = brewery.Type,
+                    Status = brewery.Status,
+                    Visited = brewery.Visited,
+                    Beers = brewery.Beers.Select(beer => new BeerDTO
+                    {
+                        Id = beer.Id,
+                        Name = beer.Name
+                    }).ToList()
+                }).ToListAsync();
+        }
+
+        public async Task<int> GetTotalCountAsync()
+        {
+            return await _context.Breweries.CountAsync();
+        }
+
         public async Task<IEnumerable<BreweryDTO>> GetAllAsync()
         {
             return await _context.Breweries

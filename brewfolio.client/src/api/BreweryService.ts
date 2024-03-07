@@ -20,4 +20,13 @@ export const BreweryService = {
     const brewery = await response.json() as Brewery;
     return brewery;
   },
+
+  getPaginatedBreweries: async (pageNumber: number = 1, pageSize: number = 50): Promise<{totalCount: number, breweries: Brewery[]}> => {
+    const response = await fetch(`${BASE_URL}/brewery/paginated?pageNumber=${pageNumber}&pageSize=${pageSize}`, {credentials: 'include'});
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const { totalCount, breweries } = await response.json();
+    return { totalCount, breweries: breweries as Brewery[] };
+  },
 };
