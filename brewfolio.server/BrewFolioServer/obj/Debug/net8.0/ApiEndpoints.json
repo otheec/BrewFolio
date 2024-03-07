@@ -93,6 +93,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "BrewFolioServer.WebApi.Controller.BeerController",
+    "Method": "GetPaginatedBeers",
+    "RelativePath": "api/Beer/paginated",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "BrewFolioServer.WebApi.Controller.BreweryController",
     "Method": "GetAll",
     "RelativePath": "api/Brewery",

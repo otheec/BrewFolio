@@ -33,6 +33,16 @@ namespace BrewFolioServer.WebApi.Controller
             return Ok(beer);
         }
 
+        [Authorize]
+        [HttpGet("paginated")]
+        public async Task<ActionResult> GetPaginatedBeers(int pageNumber = 1, int pageSize = 50)
+        {
+            var beers = await _beerService.GetPaginatedBeersAsync(pageNumber, pageSize);
+            var totalCount = await _beerService.GetTotalBeersCountAsync();
+
+            return Ok(new { totalCount , beers });
+        }
+
         [HttpPost]
         public async Task<ActionResult<Beer>> Post([FromBody] Beer beer, [FromQuery] int breweryId)
         {

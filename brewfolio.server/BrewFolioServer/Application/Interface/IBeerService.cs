@@ -5,6 +5,8 @@ namespace BrewFolioServer.Application.Interface
 {
     public interface IBeerService
     {
+        Task<IEnumerable<BeerDTO>> GetPaginatedBeersAsync(int pageNumber, int pageSize);
+        Task<int> GetTotalBeersCountAsync();
         Task<IEnumerable<BeerDTO>> GetAllBeersAsync();
         Task<BeerDTO> GetBeerByIdAsync(int id);
         Task AddBeerAsync(Beer beer, int breweryId);

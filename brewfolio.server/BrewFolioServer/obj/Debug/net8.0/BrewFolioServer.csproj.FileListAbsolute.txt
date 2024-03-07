@@ -288,3 +288,4 @@ C:\Users\Otmar\OneDrive\Plocha\BrewFolio\brewfolio.server\BrewFolioServer\obj\De
 C:\Users\Otmar\OneDrive\Plocha\BrewFolio\brewfolio.server\BrewFolioServer\obj\Debug\net8.0\BrewFolioServer.pdb
 C:\Users\Otmar\OneDrive\Plocha\BrewFolio\brewfolio.server\BrewFolioServer\obj\Debug\net8.0\BrewFolioServer.genruntimeconfig.cache
 C:\Users\Otmar\OneDrive\Plocha\BrewFolio\brewfolio.server\BrewFolioServer\obj\Debug\net8.0\ref\BrewFolioServer.dll
+C:\Users\Otmar\OneDrive\Plocha\BrewFolio\brewfolio.server\BrewFolioServer\obj\Debug\net8.0\BrewFolioServer.sourcelink.json

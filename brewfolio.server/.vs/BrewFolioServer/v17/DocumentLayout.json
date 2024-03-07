@@ -1,12 +1,105 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Otmar\\OneDrive\\Plocha\\BrewFolio\\brewfolio.server\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{45A1808B-9337-443C-9535-F2D2C77C6204}|BrewFolioServer\\BrewFolioServer.csproj|c:\\users\\otmar\\onedrive\\plocha\\brewfolio\\brewfolio.server\\brewfolioserver\\application\\service\\breweryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{45A1808B-9337-443C-9535-F2D2C77C6204}|BrewFolioServer\\BrewFolioServer.csproj|solutionrelative:brewfolioserver\\application\\service\\breweryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{45A1808B-9337-443C-9535-F2D2C77C6204}|BrewFolioServer\\BrewFolioServer.csproj|c:\\users\\otmar\\onedrive\\plocha\\brewfolio\\brewfolio.server\\brewfolioserver\\infrastructure\\repository\\breweryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{45A1808B-9337-443C-9535-F2D2C77C6204}|BrewFolioServer\\BrewFolioServer.csproj|solutionrelative:brewfolioserver\\infrastructure\\repository\\breweryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{45A1808B-9337-443C-9535-F2D2C77C6204}|BrewFolioServer\\BrewFolioServer.csproj|c:\\users\\otmar\\onedrive\\plocha\\brewfolio\\brewfolio.server\\brewfolioserver\\webapi\\controller\\brewerycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{45A1808B-9337-443C-9535-F2D2C77C6204}|BrewFolioServer\\BrewFolioServer.csproj|solutionrelative:brewfolioserver\\webapi\\controller\\brewerycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{45A1808B-9337-443C-9535-F2D2C77C6204}|BrewFolioServer\\BrewFolioServer.csproj|c:\\users\\otmar\\onedrive\\plocha\\brewfolio\\brewfolio.server\\brewfolioserver\\infrastructure\\interface\\ibreweryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{45A1808B-9337-443C-9535-F2D2C77C6204}|BrewFolioServer\\BrewFolioServer.csproj|solutionrelative:brewfolioserver\\infrastructure\\interface\\ibreweryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{45A1808B-9337-443C-9535-F2D2C77C6204}|BrewFolioServer\\BrewFolioServer.csproj|c:\\users\\otmar\\onedrive\\plocha\\brewfolio\\brewfolio.server\\brewfolioserver\\application\\interface\\ibreweryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{45A1808B-9337-443C-9535-F2D2C77C6204}|BrewFolioServer\\BrewFolioServer.csproj|solutionrelative:brewfolioserver\\application\\interface\\ibreweryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BreweryController.cs",
+              "DocumentMoniker": "C:\\Users\\Otmar\\OneDrive\\Plocha\\BrewFolio\\brewfolio.server\\BrewFolioServer\\WebApi\\Controller\\BreweryController.cs",
+              "RelativeDocumentMoniker": "BrewFolioServer\\WebApi\\Controller\\BreweryController.cs",
+              "ToolTip": "C:\\Users\\Otmar\\OneDrive\\Plocha\\BrewFolio\\brewfolio.server\\BrewFolioServer\\WebApi\\Controller\\BreweryController.cs",
+              "RelativeToolTip": "BrewFolioServer\\WebApi\\Controller\\BreweryController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-07T13:02:03.414Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BreweryRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Otmar\\OneDrive\\Plocha\\BrewFolio\\brewfolio.server\\BrewFolioServer\\Infrastructure\\Repository\\BreweryRepository.cs",
+              "RelativeDocumentMoniker": "BrewFolioServer\\Infrastructure\\Repository\\BreweryRepository.cs",
+              "ToolTip": "C:\\Users\\Otmar\\OneDrive\\Plocha\\BrewFolio\\brewfolio.server\\BrewFolioServer\\Infrastructure\\Repository\\BreweryRepository.cs",
+              "RelativeToolTip": "BrewFolioServer\\Infrastructure\\Repository\\BreweryRepository.cs",
+              "ViewState": "AQIAAE4AAAAAAAAAAAAiwGcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-07T13:02:02.008Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IBreweryRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Otmar\\OneDrive\\Plocha\\BrewFolio\\brewfolio.server\\BrewFolioServer\\Infrastructure\\Interface\\IBreweryRepository.cs",
+              "RelativeDocumentMoniker": "BrewFolioServer\\Infrastructure\\Interface\\IBreweryRepository.cs",
+              "ToolTip": "C:\\Users\\Otmar\\OneDrive\\Plocha\\BrewFolio\\brewfolio.server\\BrewFolioServer\\Infrastructure\\Interface\\IBreweryRepository.cs",
+              "RelativeToolTip": "BrewFolioServer\\Infrastructure\\Interface\\IBreweryRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-07T13:02:00.885Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IBreweryService.cs",
+              "DocumentMoniker": "C:\\Users\\Otmar\\OneDrive\\Plocha\\BrewFolio\\brewfolio.server\\BrewFolioServer\\Application\\Interface\\IBreweryService.cs",
+              "RelativeDocumentMoniker": "BrewFolioServer\\Application\\Interface\\IBreweryService.cs",
+              "ToolTip": "C:\\Users\\Otmar\\OneDrive\\Plocha\\BrewFolio\\brewfolio.server\\BrewFolioServer\\Application\\Interface\\IBreweryService.cs",
+              "RelativeToolTip": "BrewFolioServer\\Application\\Interface\\IBreweryService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-07T13:01:56.605Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BreweryService.cs",
+              "DocumentMoniker": "C:\\Users\\Otmar\\OneDrive\\Plocha\\BrewFolio\\brewfolio.server\\BrewFolioServer\\Application\\Service\\BreweryService.cs",
+              "RelativeDocumentMoniker": "BrewFolioServer\\Application\\Service\\BreweryService.cs",
+              "ToolTip": "C:\\Users\\Otmar\\OneDrive\\Plocha\\BrewFolio\\brewfolio.server\\BrewFolioServer\\Application\\Service\\BreweryService.cs",
+              "RelativeToolTip": "BrewFolioServer\\Application\\Service\\BreweryService.cs",
+              "ViewState": "AQIAAFoAAAAAAAAAAAAkwGIAAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-07T13:01:55.433Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

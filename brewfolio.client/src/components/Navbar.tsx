@@ -32,7 +32,7 @@ const Navbar: React.FC = () => {
             <Link className="nav-link" to="/repository">Repository</Link>
           </div>
           <div className="navbar-nav ms-auto">
-            <div className="nav-link" onClick={handleLogOut}>Log out</div>
+            <button type="button" className="nav-link" onClick={handleLogOut}>Log out</button>
           </div>
         </div>
       </div>

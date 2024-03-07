@@ -16,6 +16,16 @@ namespace BrewFolioServer.Application.Service
             _breweryRepository = breweryRepository;
         }
 
+        public async Task<IEnumerable<BeerDTO>> GetPaginatedBeersAsync(int pageNumber, int pageSize)
+        {
+            return await _beerRepository.GetPaginatedAsync(pageNumber, pageSize);
+        }
+
+        public async Task<int> GetTotalBeersCountAsync()
+        {
+            return await _beerRepository.GetTotalCountAsync();
+        }
+
         public async Task<IEnumerable<BeerDTO>> GetAllBeersAsync()
         {
             return await _beerRepository.GetAllAsync();

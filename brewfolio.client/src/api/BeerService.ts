@@ -1,5 +1,10 @@
 import { Beer } from "../model/Beer";
 
+interface PaginatedBeersResponse {
+  totalCount: number;
+  beers: Beer[];
+}
+
 const BASE_URL = 'http://localhost:5206/api';
 
 export const BeerService = {
@@ -19,5 +24,14 @@ export const BeerService = {
     }
     const brewery = await response.json() as Beer;
     return brewery;
+  },
+
+  getPaginatedBeers: async (pageNumber: number = 1, pageSize: number = 50): Promise<PaginatedBeersResponse> => {
+    const response = await fetch(`${BASE_URL}/beer/paginated?pageNumber=${pageNumber}&pageSize=${pageSize}`, {credentials: 'include'});
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data = await response.json() as PaginatedBeersResponse;
+    return data;
   },
 };

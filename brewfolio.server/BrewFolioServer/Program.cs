@@ -19,7 +19,13 @@ builder.Services.AddCors(options =>
         builder => builder.WithOrigins("http://localhost:3000")
                           .AllowAnyMethod()
                           .AllowAnyHeader()
-                          .AllowCredentials()); // IMPORTANT: Allow credentials
+                          .AllowCredentials());
+
+    /*options.AddPolicy("AllowFrontendOrigin2",
+       builder => builder.WithOrigins("http://192.168.16.107:3000")
+                         .AllowAnyMethod()
+                         .AllowAnyHeader()
+                         .AllowCredentials());*/
 });
 
 // Add services to the container.
