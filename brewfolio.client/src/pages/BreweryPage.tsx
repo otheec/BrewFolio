@@ -46,21 +46,25 @@ const BreweryPage: React.FC = () => {
                 <div className="col-md-6">
                 <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                     <div className="col p-4 d-flex flex-column position-static">
-                    <div className="list-group">
-                        {brewery?.beers.map((beer) => (
-                            <div key={beer.id}>
-                                <Link to={`/beer/${beer.id}`} className="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-                                    <div className="d-flex gap-2 w-100 justify-content-between">
-                                        <div>
-                                            <h6 className="mb-0">{beer.name}</h6>
-                                            <p className="mb-0 opacity-75">Beer note/description</p>
+                        <h4 className="d-flex justify-content-between align-items-center mb-3">
+                            <span className="">Beers</span>
+                            <span className="badge bg-primary rounded-pill">{brewery?.beers.length}</span>
+                        </h4>
+                        <div className="list-group">
+                            {brewery?.beers.map((beer) => (
+                                <div key={beer.id}>
+                                    <Link to={`/beer/${beer.id}`} className="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                                        <div className="d-flex gap-2 w-100 justify-content-between">
+                                            <div>
+                                                <h6 className="mb-0">{beer.name}</h6>
+                                                <p className="mb-0 opacity-75">Beer note/description</p>
+                                            </div>
+                                            <small className="opacity-50 text-nowrap">Edit</small>
                                         </div>
-                                        <small className="opacity-50 text-nowrap">Edit</small>
-                                    </div>
-                                </Link>
-                            </div>
-                        ))}
-                    </div>
+                                    </Link>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
                 </div>
@@ -77,25 +81,11 @@ const BreweryPage: React.FC = () => {
                 </div>
                 <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                     <div className="col p-4 d-flex flex-column position-static">
-                        <div className="pb-3">
-                            <label htmlFor="state" className="form-label">Status</label>
-                            <select className="form-select" id="state" required>
-                                <option value="">{brewery?.status.status}</option>
-                                <option>sample status</option>
-                            </select>
-                            <div className="invalid-feedback">
-                                Please provide a valid Status.
-                            </div>
-                        </div>
-                        <div>
-                            <label htmlFor="state" className="form-label">Type</label>
-                            <select className="form-select" id="state" required>
-                                <option value="">{brewery?.type.type}</option>
-                                <option>sample type</option>
-                            </select>
-                            <div className="invalid-feedback">
-                                Please provide a valid Type.
-                            </div>
+                        <div className="">
+                            <Link to={`/brewery/edit/${brewery?.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
+                                <button type="button" className="btn btn-warning me-3">Edit</button>
+                            </Link>
+                            <button type="button" className="btn btn-danger">Delte</button>
                         </div>
                     </div>
                 </div>

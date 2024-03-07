@@ -11,6 +11,7 @@ import Types from './pages/Types';
 import Repository from './pages/Repository';
 import BreweryPage from './pages/BreweryPage';
 import BeerPage from './pages/BeerPage';
+import BreweryEditPage from './pages/BreweryEditPage';
 
 const App: React.FC = () => {
   return (
@@ -27,6 +28,8 @@ const App: React.FC = () => {
 
         <Route path="/brewery/:breweryId" element={<BreweryPage />} />
         <Route path="/beer/:beerId" element={<BeerPage />} />
+
+        <Route path="/brewery/edit/:breweryId" element={<BreweryEditPage />} />
       </Routes>
   </BrowserRouter>
   </div>
