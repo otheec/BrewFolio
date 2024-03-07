@@ -4,7 +4,7 @@ const BASE_URL = 'http://localhost:5206/api';
 
 export const BreweryService = {
   getAllBreweries: async (): Promise<Brewery[]> => {
-    const response = await fetch(`${BASE_URL}/brewery`);
+    const response = await fetch(`${BASE_URL}/brewery`, {credentials: 'include'});
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -13,7 +13,7 @@ export const BreweryService = {
   },
 
   getBreweryById: async (id: number): Promise<Brewery> => {
-    const response = await fetch(`${BASE_URL}/brewery/${id}`);
+    const response = await fetch(`${BASE_URL}/brewery/${id}`, {credentials: 'include'});
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }

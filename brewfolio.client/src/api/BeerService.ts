@@ -1,10 +1,10 @@
 import { Beer } from "../model/Beer";
 
-const BASE_URL = 'http://localhost:5206/api'; // Adjust based on your environment setup
+const BASE_URL = 'http://localhost:5206/api';
 
 export const BeerService = {
   getAllBeers: async (): Promise<Beer[]> => {
-    const response = await fetch(`${BASE_URL}/beer`);
+    const response = await fetch(`${BASE_URL}/beer`, {credentials: 'include'});
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -13,7 +13,7 @@ export const BeerService = {
   },
 
   getBeerById: async (id: number): Promise<Beer> => {
-    const response = await fetch(`${BASE_URL}/beer/${id}`);
+    const response = await fetch(`${BASE_URL}/beer/${id}`, {credentials: 'include'});
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
