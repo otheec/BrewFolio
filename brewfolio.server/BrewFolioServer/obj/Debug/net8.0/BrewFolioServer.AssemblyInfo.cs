@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BrewFolioServer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3e086b843d7cc8e1c17512fce7bf0331e0694e74")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ef1e617ee88d251f369df03fe81ebf3ad854e6ef")]
 [assembly: System.Reflection.AssemblyProductAttribute("BrewFolioServer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BrewFolioServer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

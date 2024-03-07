@@ -19,22 +19,6 @@ namespace BrewFolioServer.WebApi.Controller
             _fetcherService = fetcherService;
         }
 
-        /*[Authorize]
-        [HttpGet]
-        public async Task<ActionResult<List<BreweryStatus>>> UploadFetchedCSV()
-        {
-            FetcherCSV fetcher = new();
-
-            var filePath = @"C:\Users\Otmar\OneDrive\Plocha\BrewFolio project\BrewFolioServer\BrewFolioServer\res\dbs_export_utf8.csv";
-            using var reader = new StreamReader(filePath);
-
-            fetcher.FetchFromCSV(reader);
-
-            await _fetcherService.AddFetchedCSVDataAsync(fetcher.Breweries, fetcher.Beers, fetcher.Types, fetcher.Statuses);
-
-            return Ok();
-        }*/
-
         [Authorize]
         [HttpPost("upload")]
         public async Task<ActionResult<List<Brewery>>> UploadBreweries(IFormFile file)
@@ -57,7 +41,7 @@ namespace BrewFolioServer.WebApi.Controller
 
             await _fetcherService.AddFetchedCSVDataAsync(fetcher.Breweries, fetcher.Beers, fetcher.Types, fetcher.Statuses);
 
-            return Ok(fetcher.GetBreweries());
+            return Ok();
         }
     }
 }

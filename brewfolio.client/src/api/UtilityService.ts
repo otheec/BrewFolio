@@ -1,5 +1,3 @@
-import { Brewery } from "../model/Brewery";
-
 const BASE_URL = 'http://localhost:5206/api';
 
 export const UtilityService = {
@@ -9,8 +7,8 @@ export const UtilityService = {
 
     const response = await fetch(`${BASE_URL}/utility/upload`, {
       method: 'POST',
-      credentials: 'include', // If your API requires credentials like cookies
-      body: formData, // No headers included as FormData sets the necessary multipart header automatically
+      credentials: 'include',
+      body: formData,
     });
 
     if (!response.ok) {

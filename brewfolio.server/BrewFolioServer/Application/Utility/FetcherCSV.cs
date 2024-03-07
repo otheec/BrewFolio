@@ -110,7 +110,5 @@ namespace BrewFolioServer.Application.Utility
             Statuses.Add(status);
             return Statuses[^1];
         }
-
-        public List<Brewery> GetBreweries() => Breweries;
     }
 }

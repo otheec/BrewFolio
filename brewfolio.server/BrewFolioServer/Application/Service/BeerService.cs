@@ -38,7 +38,6 @@ namespace BrewFolioServer.Application.Service
 
         public async Task AddBeerAsync(Beer beer, int breweryId)
         {
-            //TODO !!! handle beer/TDO
             var brewery = await _breweryRepository.GetByIdAsync(breweryId);
             if (brewery == null)
             {
