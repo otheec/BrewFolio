@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 import LoginPage from './pages/LoginPage'
 import Beers from './pages/Beers';
 import Breweries from './pages/Breweries';

@@ -24,15 +24,15 @@ const Navbar: React.FC = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <Link className="nav-link border-end border-secondary" to="/home">Home</Link>
+            <Link className="nav-link" to="/home">Home</Link>
             <Link className="nav-link" to="/breweries">Breweries</Link>
             <Link className="nav-link" to="/beers">Beers</Link>
             <Link className="nav-link" to="/statuses">Statuses</Link>
-            <Link className="nav-link border-end border-secondary" to="/types">Types</Link>
+            <Link className="nav-link" to="/types">Types</Link>
             <Link className="nav-link" to="/repository">Repository</Link>
           </div>
           <div className="navbar-nav ms-auto">
-            <div className="nav-link" onClick={handleLogOut}>Sign Up</div>
+            <div className="nav-link" onClick={handleLogOut}>Log out</div>
           </div>
         </div>
       </div>
