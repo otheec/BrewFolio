@@ -13,11 +13,12 @@ BrewFolio is a full-stack application designed for (craft) beer and (mini) brewe
 ## Prerequisites
 
 - [ASP.NET 8](https://dotnet.microsoft.com/en-us/apps/aspnet) for the backend framework.
-- [React](https://reactjs.org/) for the frontend library.
-- [Bootstrap](https://getbootstrap.com/) for styling and responsive design.
 - [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/) for data access.
 - [Microsoft.AspNetCore.Identity](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/) for authentication and identity management.
 - [SQL Server Express](https://www.microsoft.com/en-us/sql-server/sql-server-downloads): Required for the database. Please set it up prior to running the project.
+  
+- [React](https://reactjs.org/) for the frontend library.
 - [Node.js](https://nodejs.org/): Needed to run the React frontend.
+- [Bootstrap](https://getbootstrap.com/) for styling and responsive design.
 
 
