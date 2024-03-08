@@ -58,10 +58,10 @@ const BreweryPage: React.FC = () => {
         <div className="my-3 p-3 bg-body-tertiary rounded shadow-sm">
             <div className="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
                 <div className="col-lg-6 px-0">
-                <h1 className="display-4 fst-italic">{brewery?.name}</h1>
-                <p className="lead my-3">{brewery?.longName}</p>
-                <div className="lead">{brewery?.type.type}</div>
-                <div className="lead">{brewery?.status.status}</div>
+                    <h1 className="display-4 fst-italic">{brewery?.name}</h1>
+                    <p className="lead my-3">{brewery?.longName}</p>
+                    <div className="lead">{brewery?.type.type}</div>
+                    <div className="lead">{brewery?.status.status}</div>
                 </div>
             </div>
             <div className="row mb-2">
@@ -91,32 +91,32 @@ const BreweryPage: React.FC = () => {
                 </div>
                 </div>
                 <div className="col-md-6">
-                <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                    <div className="col p-4 d-flex flex-column position-static">
-                        <div>
-                            <div className="input-group">
-                                <input 
-                                    type="text" 
-                                    className="form-control" 
-                                    placeholder="Beer name" 
-                                    value={beerName} 
-                                    onChange={(e) => setBeerName(e.target.value)}
-                                />
-                                <button type="button" className="btn btn-success" onClick={handleAddBeerClick}>Add Beer</button>
+                    <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                        <div className="col p-4 d-flex flex-column position-static">
+                            <div>
+                                <div className="input-group">
+                                    <input 
+                                        type="text" 
+                                        className="form-control" 
+                                        placeholder="Beer name" 
+                                        value={beerName} 
+                                        onChange={(e) => setBeerName(e.target.value)}
+                                    />
+                                    <button type="button" className="btn btn-success" onClick={handleAddBeerClick}>Add Beer</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                    <div className="col p-4 d-flex flex-column position-static">
-                        <div className="">
-                            <Link to={`/brewery/edit/${brewery?.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
-                                <button type="button" className="btn btn-warning me-3">Edit</button>
-                            </Link>
-                            <button type="button" className="btn btn-danger">Delete</button>
+                    <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                        <div className="col p-4 d-flex flex-column position-static">
+                            <div className="">
+                                <Link to={`/brewery/edit/${brewery?.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
+                                    <button type="button" className="btn btn-warning me-3">Edit</button>
+                                </Link>
+                                <button type="button" className="btn btn-danger">Delete</button>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
