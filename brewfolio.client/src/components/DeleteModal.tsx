@@ -1,13 +1,13 @@
 import React from 'react';
 
-interface ConfirmationModalProps {
+interface DeleteModalProps {
   show: boolean;
   onClose: () => void;
   onConfirm: () => void;
   content?: string;
 }
 
-const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ show, onClose, onConfirm, content }) => {
+const DeleteModal: React.FC<DeleteModalProps> = ({ show, onClose, onConfirm, content }) => {
   return (
     <>
     <div className={`modal ${show ? "show" : ""}`} style={{ display: show ? "block" : "none" }} tabIndex={-1}>
@@ -31,4 +31,4 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ show, onClose, on
   );
 };
 
-export default ConfirmationModal;
+export default DeleteModal;

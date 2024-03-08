@@ -5,7 +5,7 @@ import { Brewery } from '../model/Brewery';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Pagination from '../components/Pagination';
-import ConfirmationModal from '../components/ConfirmationModal'; // Assuming this is a generic confirmation modal component
+import DeleteModal from '../components/DeleteModal'; // Assuming this is a generic confirmation modal component
 import { PlaceholderIcon } from '../components/SvgIcons';
 
 interface PaginationState {
@@ -97,7 +97,7 @@ const Breweries: React.FC = () => {
       <Footer />
 
       {showModal && (
-        <ConfirmationModal
+        <DeleteModal
           show={showModal}
           onClose={() => setShowModal(false)}
           onConfirm={handleDeleteBrewery}

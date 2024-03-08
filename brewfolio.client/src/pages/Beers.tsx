@@ -5,7 +5,7 @@ import { Beer } from '../model/Beer';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Pagination from '../components/Pagination';
-import ConfirmationModal from '../components/ConfirmationModal';
+import DeleteModal from '../components/DeleteModal';
 import { PlaceholderIcon } from '../components/SvgIcons';
 
 interface PaginationState {
@@ -97,7 +97,7 @@ const Beers: React.FC = () => {
       <Footer />
 
       {showModal && (
-        <ConfirmationModal
+        <DeleteModal
           show={showModal}
           onClose={() => setShowModal(false)}
           onConfirm={handleDeleteBeer}
