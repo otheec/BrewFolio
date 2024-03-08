@@ -81,7 +81,7 @@ const BreweryPage: React.FC = () => {
                                                 <h6 className="mb-0">{beer.name}</h6>
                                                 <p className="mb-0 opacity-75">Beer note/description</p>
                                             </div>
-                                            <small className="opacity-50 text-nowrap">Edit</small>
+                                            <small className="opacity-50 text-nowrap">Note/date?</small>
                                         </div>
                                     </Link>
                                 </div>

@@ -34,7 +34,8 @@
               "RelativeToolTip": "BrewFolioServer\\Application\\Interface\\IBeerService.cs",
               "ViewState": "AQIAAAUAAAAAAAAAAAAxwBAAAABNAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T22:12:28.604Z"
+              "WhenOpened": "2024-03-07T22:12:28.604Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -56,7 +57,7 @@
               "RelativeDocumentMoniker": "BrewFolioServer\\WebApi\\Controller\\BeerController.cs",
               "ToolTip": "C:\\Users\\Otmar\\OneDrive\\Plocha\\BrewFolio\\brewfolio.server\\BrewFolioServer\\WebApi\\Controller\\BeerController.cs",
               "RelativeToolTip": "BrewFolioServer\\WebApi\\Controller\\BeerController.cs",
-              "ViewState": "AQIAADQAAAAAAAAAAAAUwDwAAAAAAAAA",
+              "ViewState": "AQIAAEIAAAAAAAAAAAAcwFUAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-07T19:28:43.638Z",
               "EditorCaption": ""

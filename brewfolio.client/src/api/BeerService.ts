@@ -52,4 +52,19 @@ export const BeerService = {
     }
     return await response.json();
   },
+
+  deleteBeer: async (id: number) => {
+    const url = `${BASE_URL}/beer/${id}`;
+    const response = await fetch(url, {
+      method: 'DELETE',
+      headers: {
+      },
+      credentials: 'include',
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+  },
+
 };

@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import { useEffect, useState } from 'react';
 import { BreweryStatusService } from '../api/BreweryStatusService';
 import { BreweryStatus } from '../model/BreweryStatus';
-import { PlaceholderIcon, TrashIcon} from '../components/SvgIcons';
+import { PlaceholderIcon} from '../components/SvgIcons';
 
 const Statuses: React.FC = () => {
 
@@ -42,7 +42,10 @@ const Statuses: React.FC = () => {
               <div className="pb-3 mb-0 small lh-sm border-bottom w-100">
               <div className="d-flex justify-content-between">
                   <strong className="text-gray-dark">{status.status}</strong>
-                  <TrashIcon/>
+                  <div className="ms-auto d-flex justify-content-end">
+                    <button type="button" className="page-link pe-3">Edit</button>
+                    <button type="button" className="page-link">Delete</button>
+                </div>
               </div>
               <span className="d-block">Show Breweries</span>
               </div>

@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import { useEffect, useState } from 'react';
 import { BreweryTypeService } from '../api/BreweryTypeService';
 import { BreweryType } from '../model/BreweryType';
-import { PlaceholderIcon, TrashIcon} from '../components/SvgIcons';
+import { PlaceholderIcon} from '../components/SvgIcons';
 
 const Types: React.FC = () => {
 
@@ -42,7 +42,10 @@ const Types: React.FC = () => {
         <div className="pb-3 mb-0 small lh-sm border-bottom w-100">
         <div className="d-flex justify-content-between">
             <strong className="text-gray-dark">{type.type}</strong>
-            <TrashIcon/>
+            <div className="ms-auto d-flex justify-content-end">
+              <button type="button" className="page-link pe-3">Edit</button>
+              <button type="button" className="page-link">Delete</button>
+            </div>
         </div>
         <span className="d-block">{/*popisek statuses*/}Show Breweries</span>
         </div>
