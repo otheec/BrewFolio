@@ -23,8 +23,9 @@ const Breweries: React.FC = () => {
     totalBreweries: 0,
   });
 
-  const [showModal, setShowModal] = useState(false);
   const [selectedBrewery, setSelectedBrewery] = useState<Brewery | null>(null);
+  
+  const [showModal, setShowModal] = useState(false);
 
   const fetchBreweries = useCallback(async () => {
     try {
@@ -83,7 +84,9 @@ const Breweries: React.FC = () => {
                           <strong>{brewery.name}</strong>
               </Link>
               <div className="ms-auto d-flex justify-content-end">
-                <button type="button" className="page-link pe-3">Edit</button>
+                <Link to={`/brewery/edit/${brewery.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
+                  <button type="button" className="page-link pe-3">Edit</button>
+                </Link>
                 <button type="button" className="page-link" onClick={() => openModalForDelete(brewery)}>Delete</button>
               </div>
             </div>

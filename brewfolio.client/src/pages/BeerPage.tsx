@@ -6,6 +6,7 @@ import { BeerService } from '../api/BeerService';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Link} from "react-router-dom";
+import { LinkIcon } from '../components/SvgIcons';
 
 const BeerPage: React.FC = () => {
     
@@ -34,7 +35,7 @@ const BeerPage: React.FC = () => {
                 <div className="col-lg-6 px-0">
                     <h1 className="display-4 fst-italic">{beer?.name}</h1>
                     <Link to={`/brewery/${beer?.brewery.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
-                        <p className="lead my-3">{beer?.brewery.longName}</p>
+                        <p className="lead my-3">{beer?.brewery.longName} <LinkIcon/></p>
                     </Link>
                 </div>
             </div>

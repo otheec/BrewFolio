@@ -109,7 +109,7 @@ const BreweryPage: React.FC = () => {
                     </div>
                     <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                         <div className="col p-4 d-flex flex-column position-static">
-                            <div className="">
+                            <div className="d-flex justify-content-between">
                                 <Link to={`/brewery/edit/${brewery?.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
                                     <button type="button" className="btn btn-warning me-3">Edit</button>
                                 </Link>

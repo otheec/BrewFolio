@@ -30,6 +30,8 @@ const App: React.FC = () => {
         <Route path="/beer/:beerId" element={<BeerPage />} />
 
         <Route path="/brewery/edit/:breweryId" element={<BreweryEditPage />} />
+
+        <Route path="/brewery/add" element={<BreweryEditPage />} />
       </Routes>
   </BrowserRouter>
   </div>

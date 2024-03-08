@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import Pagination from '../components/Pagination';
 import DeleteModal from '../components/DeleteModal';
 import { PlaceholderIcon } from '../components/SvgIcons';
+import { LinkIcon } from '../components/SvgIcons';
 
 interface PaginationState {
   beers: Beer[];
@@ -87,7 +88,9 @@ const Beers: React.FC = () => {
                     <button type="button" className="page-link" onClick={() => openModalForDelete(beer)}>Delete</button>
                   </div>
                 </div>
-                <span className="d-block">{beer.brewery?.name}</span>
+                <Link to={`/brewery/${beer.brewery.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
+                  <span className="d-block">{beer.brewery?.name}  <LinkIcon/></span>
+                </Link>
               </div>
             </div>
           ))}
