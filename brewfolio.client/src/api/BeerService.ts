@@ -34,4 +34,22 @@ export const BeerService = {
     const data = await response.json() as PaginatedBeersResponse;
     return data;
   },
+
+  addBeer: async (beer: Beer, breweryId: number): Promise<{ id: number }> => {
+    const url = `${BASE_URL}/beer?breweryId=${encodeURIComponent(breweryId)}`;
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(beer),
+      credentials: 'include',
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`HTTP error! status: ${response.status}, ${errorText}`);
+    }
+    return await response.json();
+  },
 };

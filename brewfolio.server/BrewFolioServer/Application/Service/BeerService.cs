@@ -48,6 +48,43 @@ namespace BrewFolioServer.Application.Service
             await _beerRepository.AddAsync(beer);
         }
 
+        public async Task<Beer> AddBeerAsync(BeerDTO beerDto, int breweryId)
+        {
+            var brewery = await _breweryRepository.GetBreweryByIdAsync(breweryId);
+            if (brewery == null)
+            {
+                throw new ArgumentException("Brewery not found.");
+            }
+
+            var beer = new Beer
+            {
+                Name = beerDto.Name,
+                Brewery = brewery
+            };
+
+            await _beerRepository.AddAsync(beer);
+            return beer;
+        }
+
+        public async Task<Beer> AddBeerByNameAndBreweryIdAsync(string name, int breweryId)
+        {
+            var brewery = await _breweryRepository.GetBreweryByIdAsync(breweryId);
+            if (brewery == null)
+            {
+                throw new ArgumentException("Brewery not found.");
+            }
+
+            var beer = new Beer
+            {
+                Name = name,
+                Brewery = brewery
+            };
+
+            await _beerRepository.AddAsync(beer);
+            return beer;
+        }
+
+
         public async Task AddBeerAsync(Beer beer, string longName)
         {
             var brewery = await _breweryRepository.GetByLongNameAsync(longName);

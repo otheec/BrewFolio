@@ -4,31 +4,53 @@ import Footer from '../components/Footer';
 import { Brewery } from '../model/Brewery';
 import { BreweryService } from '../api/BreweryService';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Link} from "react-router-dom";
+import { BeerService } from '../api/BeerService';
+import { Beer } from '../model/Beer';
 
 const BreweryPage: React.FC = () => {
     
     const { breweryId } = useParams<{ breweryId: string }>();
     const [brewery, setBrewery] = useState<Brewery | null>(null);
+    const [beerName, setBeerName] = useState('');
 
-    useEffect(() => {
-        const loadBrewery = async () => {
+    const loadBrewery = useCallback(async () => {
         try {
             const data = await BreweryService.getBreweryById(Number(breweryId));
             setBrewery(data);
         } catch (error) {
             console.error('Failed to fetch brewery data', error);
         }
+    }, [breweryId]); 
+
+    useEffect(() => {
+        loadBrewery();
+    }, [loadBrewery]);
+
+    const handleAddBeerClick = async () => {
+        const beerData = {
+            id: 0,
+            name: beerName,
+            brewery: {
+                ...brewery,
+                beers: [] // Explicitly set beers to an empty array, JSON serialization will loop otherwise
+            }
+        };
+    
+        try {
+            const breweryId = brewery?.id as number;
+            await BeerService.addBeer(beerData as Beer, breweryId);
+
+            await loadBrewery();
+
+            setBeerName('');
+        } catch (error) {
+            console.error('Failed to add beer:', error);
+            alert('Failed to add the beer. See console for details.');
+        }
     };
-
-    loadBrewery();
-    }, [breweryId]);
-
-    const handleAddBeerClick = () => {
-        alert("Add a new beer.");
-      };
-
+    
     return (
     <>
     <Navbar/>
@@ -73,8 +95,14 @@ const BreweryPage: React.FC = () => {
                     <div className="col p-4 d-flex flex-column position-static">
                         <div>
                             <div className="input-group">
-                                <input type="text" className="form-control" placeholder="Beer name"/>
-                                <button type="submit" className="btn btn-success" onClick={handleAddBeerClick}>Add Beer</button>
+                                <input 
+                                    type="text" 
+                                    className="form-control" 
+                                    placeholder="Beer name" 
+                                    value={beerName} 
+                                    onChange={(e) => setBeerName(e.target.value)}
+                                />
+                                <button type="button" className="btn btn-success" onClick={handleAddBeerClick}>Add Beer</button>
                             </div>
                         </div>
                     </div>
@@ -85,7 +113,7 @@ const BreweryPage: React.FC = () => {
                             <Link to={`/brewery/edit/${brewery?.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
                                 <button type="button" className="btn btn-warning me-3">Edit</button>
                             </Link>
-                            <button type="button" className="btn btn-danger">Delte</button>
+                            <button type="button" className="btn btn-danger">Delete</button>
                         </div>
                     </div>
                 </div>

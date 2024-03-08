@@ -15,6 +15,15 @@ namespace BrewFolioServer.Infrastructure.Repository
             _context = context;
         }
 
+        public async Task<Brewery> GetBreweryByIdAsync(int id)
+        {
+            return await _context.Breweries
+                .Include(b => b.Beers)
+                .Include(b => b.Type) 
+                .Include(b => b.Status)
+                .FirstOrDefaultAsync(b => b.Id == id);
+        }
+
         public async Task<IEnumerable<BreweryDTO>> GetPaginatedAsync(int pageNumber, int pageSize)
         {
             return await _context.Breweries

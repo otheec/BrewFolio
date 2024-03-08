@@ -28,8 +28,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "beer",
-        "Type": "BrewFolioServer.Domain.Model.Beer",
+        "Name": "beerDto",
+        "Type": "BrewFolioServer.Domain.DTO.BeerDTO",
         "IsRequired": true
       },
       {

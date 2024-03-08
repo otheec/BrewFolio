@@ -13,5 +13,7 @@ namespace BrewFolioServer.Application.Interface
         //Task UpdateBeerAsync(Beer beer, int breweryId);
         Task DeleteBeerAsync(int id);
         Task AddBeerAsync(Beer beer, string longName);
+        Task<Beer> AddBeerAsync(BeerDTO beerDto, int breweryId);
+        Task<Beer> AddBeerByNameAndBreweryIdAsync(string name, int breweryId);
     }
 }
