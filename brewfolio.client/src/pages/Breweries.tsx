@@ -5,7 +5,6 @@ import { Brewery } from '../model/Brewery';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Pagination from '../components/Pagination';
-import DeleteModal from '../components/DeleteModal'; // Assuming this is a generic confirmation modal component
 import { PlaceholderIcon } from '../components/SvgIcons';
 
 interface PaginationState {
@@ -22,10 +21,6 @@ const Breweries: React.FC = () => {
     pageSize: 50,
     totalBreweries: 0,
   });
-
-  const [selectedBrewery, setSelectedBrewery] = useState<Brewery | null>(null);
-  
-  const [showModal, setShowModal] = useState(false);
 
   const fetchBreweries = useCallback(async () => {
     try {
@@ -49,23 +44,6 @@ const Breweries: React.FC = () => {
     setPagination((prev) => ({ ...prev, currentPage: newPage }));
   };
 
-  const handleDeleteBrewery = async () => {
-    if (!selectedBrewery) return;
-    try {
-      //await BreweryService.deleteBrewery(selectedBrewery.id);
-      fetchBreweries();
-      setShowModal(false);
-    } catch (error) {
-      console.error('Failed to delete brewery:', error);
-      alert('Failed to delete the brewery. Please try again later.');
-    }
-  };
-
-  const openModalForDelete = (brewery: Brewery) => {
-    setSelectedBrewery(brewery);
-    setShowModal(true);
-  };
-
   return (
     <>
       <Navbar />
@@ -73,7 +51,9 @@ const Breweries: React.FC = () => {
         <div className="my-3 p-3 bg-body-tertiary rounded shadow-sm">
           <div className="d-flex border-bottom justify-content-between align-items-center pb-3">
             <h1 className="mb-0">Breweries</h1>
-            <button className="btn btn-success" onClick={() => alert("Open the form to add a new brewery.")}>+ Add Brewery</button>
+            <Link to={`/brewery/add`} style={{ textDecoration: 'none', color: "#000000" }}>
+              <button className="btn btn-success">+ Add Brewery</button>
+            </Link>
           </div>
           {pagination.breweries.map((brewery) => (
           <div key={brewery.id} className="d-flex text-muted pt-3">
@@ -87,7 +67,6 @@ const Breweries: React.FC = () => {
                 <Link to={`/brewery/edit/${brewery.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
                   <button type="button" className="page-link pe-3">Edit</button>
                 </Link>
-                <button type="button" className="page-link" onClick={() => openModalForDelete(brewery)}>Delete</button>
               </div>
             </div>
             <span className="d-block">{brewery.longName}</span>
@@ -98,15 +77,6 @@ const Breweries: React.FC = () => {
         </div>
       </main>
       <Footer />
-
-      {showModal && (
-        <DeleteModal
-          show={showModal}
-          onClose={() => setShowModal(false)}
-          onConfirm={handleDeleteBrewery}
-          content={`Are you sure you want to delete "${selectedBrewery?.name}"?`}
-        />
-      )}
     </>
   );
 };

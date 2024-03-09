@@ -9,6 +9,7 @@ import { BreweryStatus } from '../model/BreweryStatus';
 import { BreweryType } from '../model/BreweryType';
 import { BreweryStatusService } from '../api/BreweryStatusService';
 import { BreweryTypeService } from '../api/BreweryTypeService';
+import DeleteModal from '../components/DeleteModal';
 
 const BreweryEditPage: React.FC = () => {
     const { breweryId } = useParams<{ breweryId?: string }>();
@@ -23,8 +24,13 @@ const BreweryEditPage: React.FC = () => {
         visited: false,
         beers: []
     });
+
     const [statuses, setStatuses] = useState<BreweryStatus[]>([]);
     const [types, setTypes] = useState<BreweryType[]>([]);
+
+    const [selectedBrewery, setSelectedBrewery] = useState<Brewery | null>(null);
+  
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -55,17 +61,19 @@ const BreweryEditPage: React.FC = () => {
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = e.target;
         if (!brewery) return;
-      
-        let updatedValue: BreweryType | BreweryStatus | undefined = undefined;
+    
+        // Assuming statuses and types are arrays of objects with an 'id' and 'name'
+        let updatedField;
         if (name === "status") {
-          updatedValue = statuses.find(status => status.id === Number(value));
+            updatedField = statuses.find(status => status.id.toString() === value);
         } else if (name === "type") {
-          updatedValue = types.find(type => type.id === Number(value));
+            updatedField = types.find(type => type.id.toString() === value);
         }
-      
-        const updatedBrewery: Brewery = { ...brewery, [name]: updatedValue };
-        setBrewery(updatedBrewery);
-      };
+    
+        if (updatedField) {
+            setBrewery({ ...brewery, [name]: updatedField });
+        }
+    };
       
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -81,17 +89,35 @@ const BreweryEditPage: React.FC = () => {
         navigate('/breweries');
     };
 
+    const handleDeleteBrewery = async () => {
+        if (!selectedBrewery) return;
+        try {
+          //await BreweryService.deleteBrewery(selectedBrewery.id);
+          setShowModal(false);
+          navigate('/breweries');
+        } catch (error) {
+          console.error('Failed to delete brewery:', error);
+          alert('Failed to delete the brewery. Please try again later.');
+        }
+      };
+    
+      const openModalForDelete = (brewery: Brewery) => {
+        setSelectedBrewery(brewery);
+        setShowModal(true);
+      };
+
     return (
         <>
             <Navbar />
             <main className="container my-4">
                 <div className="my-3 p-3 bg-body-tertiary rounded shadow-sm">
-                    <form onSubmit={handleSubmit}>
+                    <form id="beerInfo-form" onSubmit={handleSubmit}>
                         <div className="pb-3">
                             <label htmlFor="name" className="form-label">Name</label>
                             <input 
-                                type="text" 
+                                type="text"
                                 className="form-control" 
+                                id="name"
                                 name="name"
                                 value={brewery?.name || ''} 
                                 onChange={handleChange}
@@ -102,6 +128,7 @@ const BreweryEditPage: React.FC = () => {
                             <input 
                                 type="text" 
                                 className="form-control" 
+                                id="longName"
                                 name="longName"
                                 value={brewery?.longName || ''}
                                 onChange={handleChange}
@@ -111,7 +138,8 @@ const BreweryEditPage: React.FC = () => {
                             <label htmlFor="status" className="form-label">Status</label>
                             <select 
                                 className="form-select" 
-                                name="status" 
+                                name="status"
+                                id="status"
                                 value={brewery?.status?.id || ''} 
                                 onChange={handleSelectChange} 
                                 required>
@@ -125,6 +153,7 @@ const BreweryEditPage: React.FC = () => {
                             <select 
                                 className="form-select" 
                                 name="type" 
+                                id="type"
                                 value={brewery?.type?.id || ''} 
                                 onChange={handleSelectChange} 
                                 required>
@@ -135,12 +164,21 @@ const BreweryEditPage: React.FC = () => {
                         </div>
                         <div className="d-flex justify-content-between align-items-center">
                             <button type="submit" className="btn btn-primary">{breweryId ? 'Update Brewery' : 'Add Brewery'}</button>
-                            {breweryId ? <button type="button" className="btn btn-danger ms-2" onClick={() => navigate('/breweries')}>Delete</button> : null}
+                            {breweryId && <button type="button" className="btn btn-danger ms-2" onClick={() => openModalForDelete(brewery!)}>Delete</button>}
                         </div>
                     </form>
                 </div>
             </main>
             <Footer />
+
+            {showModal && (
+                <DeleteModal
+                show={showModal}
+                onClose={() => setShowModal(false)}
+                onConfirm={handleDeleteBrewery}
+                content={`${selectedBrewery?.name}`}
+                />
+            )}
         </>
     );
 };

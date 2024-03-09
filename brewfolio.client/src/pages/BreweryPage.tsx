@@ -113,7 +113,6 @@ const BreweryPage: React.FC = () => {
                                 <Link to={`/brewery/edit/${brewery?.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
                                     <button type="button" className="btn btn-warning me-3">Edit</button>
                                 </Link>
-                                <button type="button" className="btn btn-danger">Delete</button>
                             </div>
                         </div>
                     </div>
