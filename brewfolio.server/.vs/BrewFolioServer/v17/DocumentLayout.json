@@ -55,8 +55,7 @@
               "RelativeToolTip": "BrewFolioServer\\Application\\Service\\FetcherCSVService.cs",
               "ViewState": "AQIAACoAAAAAAAAAAAAYwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-09T11:12:39.116Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-09T11:12:39.116Z"
             },
             {
               "$type": "Document",
@@ -92,8 +91,7 @@
               "RelativeToolTip": "BrewFolioServer\\WebApi\\Controller\\BeerController.cs",
               "ViewState": "AQIAAD0AAAAAAAAAAAAcwFUAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T19:28:43.638Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-07T19:28:43.638Z"
             }
           ]
         }
