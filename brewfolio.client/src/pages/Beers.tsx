@@ -17,6 +17,7 @@ interface PaginationState {
 }
 
 const Beers: React.FC = () => {
+
   const [pagination, setPagination] = useState<PaginationState>({
     beers: [],
     currentPage: 1,
@@ -89,7 +90,7 @@ const Beers: React.FC = () => {
                   </div>
                 </div>
                 <Link to={`/brewery/${beer.brewery.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
-                  <span className="d-block">{beer.brewery?.name}  <LinkIcon/></span>
+                  <span className="d-block">{beer.brewery?.name}  <LinkIcon /></span>
                 </Link>
               </div>
             </div>

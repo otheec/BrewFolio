@@ -9,7 +9,7 @@ const BASE_URL = 'http://localhost:5206/api';
 
 export const BeerService = {
   getAllBeers: async (): Promise<Beer[]> => {
-    const response = await fetch(`${BASE_URL}/beer`, {credentials: 'include'});
+    const response = await fetch(`${BASE_URL}/beer`, { credentials: 'include' });
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -18,7 +18,7 @@ export const BeerService = {
   },
 
   getBeerById: async (id: number): Promise<Beer> => {
-    const response = await fetch(`${BASE_URL}/beer/${id}`, {credentials: 'include'});
+    const response = await fetch(`${BASE_URL}/beer/${id}`, { credentials: 'include' });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -27,7 +27,7 @@ export const BeerService = {
   },
 
   getPaginatedBeers: async (pageNumber: number = 1, pageSize: number = 50): Promise<PaginatedBeersResponse> => {
-    const response = await fetch(`${BASE_URL}/beer/paginated?pageNumber=${pageNumber}&pageSize=${pageSize}`, {credentials: 'include'});
+    const response = await fetch(`${BASE_URL}/beer/paginated?pageNumber=${pageNumber}&pageSize=${pageSize}`, { credentials: 'include' });
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }

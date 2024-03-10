@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Brewery } from '../model/Brewery';
 import { BreweryService } from '../api/BreweryService';
-import { useParams, useNavigate  } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { BreweryStatus } from '../model/BreweryStatus';
 import { BreweryType } from '../model/BreweryType';
@@ -14,7 +14,7 @@ import DeleteModal from '../components/DeleteModal';
 const BreweryEditPage: React.FC = () => {
     const { breweryId } = useParams<{ breweryId?: string }>();
     const navigate = useNavigate();
-    
+
     const [brewery, setBrewery] = useState<Brewery | null>({
         id: 0,
         name: '',
@@ -29,7 +29,7 @@ const BreweryEditPage: React.FC = () => {
     const [types, setTypes] = useState<BreweryType[]>([]);
 
     const [selectedBrewery, setSelectedBrewery] = useState<Brewery | null>(null);
-  
+
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
@@ -61,7 +61,7 @@ const BreweryEditPage: React.FC = () => {
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = e.target;
         if (!brewery) return;
-    
+
         // Assuming statuses and types are arrays of objects with an 'id' and 'name'
         let updatedField;
         if (name === "status") {
@@ -69,17 +69,17 @@ const BreweryEditPage: React.FC = () => {
         } else if (name === "type") {
             updatedField = types.find(type => type.id.toString() === value);
         }
-    
+
         if (updatedField) {
             setBrewery({ ...brewery, [name]: updatedField });
         }
     };
-      
+
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!brewery) return;
-        
+
         if (breweryId && brewery) {
             //await BreweryService.updateBrewery(brewery);
         } else {
@@ -92,19 +92,19 @@ const BreweryEditPage: React.FC = () => {
     const handleDeleteBrewery = async () => {
         if (!selectedBrewery) return;
         try {
-          //await BreweryService.deleteBrewery(selectedBrewery.id);
-          setShowModal(false);
-          navigate('/breweries');
+            //await BreweryService.deleteBrewery(selectedBrewery.id);
+            setShowModal(false);
+            navigate('/breweries');
         } catch (error) {
-          console.error('Failed to delete brewery:', error);
-          alert('Failed to delete the brewery. Please try again later.');
+            console.error('Failed to delete brewery:', error);
+            alert('Failed to delete the brewery. Please try again later.');
         }
-      };
-    
-      const openModalForDelete = (brewery: Brewery) => {
+    };
+
+    const openModalForDelete = (brewery: Brewery) => {
         setSelectedBrewery(brewery);
         setShowModal(true);
-      };
+    };
 
     return (
         <>
@@ -114,20 +114,20 @@ const BreweryEditPage: React.FC = () => {
                     <form id="beerInfo-form" onSubmit={handleSubmit}>
                         <div className="pb-3">
                             <label htmlFor="name" className="form-label">Name</label>
-                            <input 
+                            <input
                                 type="text"
-                                className="form-control" 
+                                className="form-control"
                                 id="name"
                                 name="name"
-                                value={brewery?.name || ''} 
+                                value={brewery?.name || ''}
                                 onChange={handleChange}
                                 required />
                         </div>
                         <div className="pb-3">
                             <label htmlFor="longName" className="form-label">Long name</label>
-                            <input 
-                                type="text" 
-                                className="form-control" 
+                            <input
+                                type="text"
+                                className="form-control"
                                 id="longName"
                                 name="longName"
                                 value={brewery?.longName || ''}
@@ -136,12 +136,12 @@ const BreweryEditPage: React.FC = () => {
                         </div>
                         <div className="pb-3">
                             <label htmlFor="status" className="form-label">Status</label>
-                            <select 
-                                className="form-select" 
+                            <select
+                                className="form-select"
                                 name="status"
                                 id="status"
-                                value={brewery?.status?.id || ''} 
-                                onChange={handleSelectChange} 
+                                value={brewery?.status?.id || ''}
+                                onChange={handleSelectChange}
                                 required>
                                 {statuses.map(status => (
                                     <option key={status.id} value={status.id}>{status.status}</option>
@@ -150,12 +150,12 @@ const BreweryEditPage: React.FC = () => {
                         </div>
                         <div className="pb-3">
                             <label htmlFor="type" className="form-label">Type</label>
-                            <select 
-                                className="form-select" 
-                                name="type" 
+                            <select
+                                className="form-select"
+                                name="type"
                                 id="type"
-                                value={brewery?.type?.id || ''} 
-                                onChange={handleSelectChange} 
+                                value={brewery?.type?.id || ''}
+                                onChange={handleSelectChange}
                                 required>
                                 {types.map(type => (
                                     <option key={type.id} value={type.id}>{type.type}</option>
@@ -173,10 +173,10 @@ const BreweryEditPage: React.FC = () => {
 
             {showModal && (
                 <DeleteModal
-                show={showModal}
-                onClose={() => setShowModal(false)}
-                onConfirm={handleDeleteBrewery}
-                content={`${selectedBrewery?.name}`}
+                    show={showModal}
+                    onClose={() => setShowModal(false)}
+                    onConfirm={handleDeleteBrewery}
+                    content={`${selectedBrewery?.name}`}
                 />
             )}
         </>

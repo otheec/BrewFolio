@@ -5,4 +5,3 @@ export interface Beer {
   name: string;
   brewery: Brewery;
 }
-  

@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
-        <BrandBeerIcon className="me-2" style={{ height: '32px', width: 'auto' }}/>
+        <BrandBeerIcon className="me-2" style={{ height: '32px', width: 'auto' }} />
         <Link className="navbar-brand" to="/">BrewFolio</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>

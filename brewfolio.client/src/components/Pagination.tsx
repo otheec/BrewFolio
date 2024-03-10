@@ -14,21 +14,21 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
 
   return (
     <div className="d-flex justify-content-center pt-3">
-    <nav aria-label="Page navigation example">
-      <ul className="pagination justify-content-center">
-        <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
-          <button type="button" className="page-link" onClick={() => onPageChange(currentPage - 1)}>Previous</button>
-        </li>
-        {pageNumbers.map(page => (
-          <li key={page} className={`page-item ${currentPage === page ? 'active' : ''}`}>
-            <button type="button" className="page-link" onClick={() => onPageChange(page)}>{page}</button>
+      <nav aria-label="Page navigation example">
+        <ul className="pagination justify-content-center">
+          <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+            <button type="button" className="page-link" onClick={() => onPageChange(currentPage - 1)}>Previous</button>
           </li>
-        ))}
-        <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
-          <button type="button" className="page-link" onClick={() => onPageChange(currentPage + 1)}>Next</button>
-        </li>
-      </ul>
-    </nav>
+          {pageNumbers.map(page => (
+            <li key={page} className={`page-item ${currentPage === page ? 'active' : ''}`}>
+              <button type="button" className="page-link" onClick={() => onPageChange(page)}>{page}</button>
+            </li>
+          ))}
+          <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+            <button type="button" className="page-link" onClick={() => onPageChange(currentPage + 1)}>Next</button>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 };

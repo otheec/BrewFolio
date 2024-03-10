@@ -4,7 +4,7 @@ const BASE_URL = 'http://localhost:5206/api';
 
 export const BreweryService = {
   getAllBreweries: async (): Promise<Brewery[]> => {
-    const response = await fetch(`${BASE_URL}/brewery`, {credentials: 'include'});
+    const response = await fetch(`${BASE_URL}/brewery`, { credentials: 'include' });
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -13,7 +13,7 @@ export const BreweryService = {
   },
 
   getBreweryById: async (id: number): Promise<Brewery> => {
-    const response = await fetch(`${BASE_URL}/brewery/${id}`, {credentials: 'include'});
+    const response = await fetch(`${BASE_URL}/brewery/${id}`, { credentials: 'include' });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -21,8 +21,8 @@ export const BreweryService = {
     return brewery;
   },
 
-  getPaginatedBreweries: async (pageNumber: number = 1, pageSize: number = 50): Promise<{totalCount: number, breweries: Brewery[]}> => {
-    const response = await fetch(`${BASE_URL}/brewery/paginated?pageNumber=${pageNumber}&pageSize=${pageSize}`, {credentials: 'include'});
+  getPaginatedBreweries: async (pageNumber: number = 1, pageSize: number = 50): Promise<{ totalCount: number, breweries: Brewery[] }> => {
+    const response = await fetch(`${BASE_URL}/brewery/paginated?pageNumber=${pageNumber}&pageSize=${pageSize}`, { credentials: 'include' });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }

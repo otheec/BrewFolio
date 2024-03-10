@@ -56,22 +56,22 @@ const Breweries: React.FC = () => {
             </Link>
           </div>
           {pagination.breweries.map((brewery) => (
-          <div key={brewery.id} className="d-flex text-muted pt-3">
-            <PlaceholderIcon/>
-            <div className="pb-3 mb-0 small lh-sm border-bottom w-100">
-            <div className="d-flex justify-content-between">
-              <Link to={`/brewery/${brewery.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
-                          <strong>{brewery.name}</strong>
-              </Link>
-              <div className="ms-auto d-flex justify-content-end">
-                <Link to={`/brewery/edit/${brewery.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
-                  <button type="button" className="page-link pe-3">Edit</button>
-                </Link>
+            <div key={brewery.id} className="d-flex text-muted pt-3">
+              <PlaceholderIcon />
+              <div className="pb-3 mb-0 small lh-sm border-bottom w-100">
+                <div className="d-flex justify-content-between">
+                  <Link to={`/brewery/${brewery.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
+                    <strong>{brewery.name}</strong>
+                  </Link>
+                  <div className="ms-auto d-flex justify-content-end">
+                    <Link to={`/brewery/edit/${brewery.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
+                      <button type="button" className="page-link pe-3">Edit</button>
+                    </Link>
+                  </div>
+                </div>
+                <span className="d-block">{brewery.longName}</span>
               </div>
             </div>
-            <span className="d-block">{brewery.longName}</span>
-            </div>
-          </div>
           ))}
           <Pagination currentPage={pagination.currentPage} totalPages={Math.ceil(pagination.totalBreweries / pagination.pageSize)} onPageChange={handlePageChange} />
         </div>

@@ -1,5 +1,4 @@
 export interface BreweryStatus {
-    id: number;
-    status: string;
-  }
-  
+  id: number;
+  status: string;
+}

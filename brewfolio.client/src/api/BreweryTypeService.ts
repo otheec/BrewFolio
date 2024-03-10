@@ -4,7 +4,7 @@ const BASE_URL = 'http://localhost:5206/api';
 
 export const BreweryTypeService = {
   getAllTypes: async (): Promise<BreweryType[]> => {
-    const response = await fetch(`${BASE_URL}/brewerytype`, {credentials: 'include'});
+    const response = await fetch(`${BASE_URL}/brewerytype`, { credentials: 'include' });
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
