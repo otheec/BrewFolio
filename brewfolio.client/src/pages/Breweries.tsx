@@ -10,6 +10,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Pagination from '../components/Pagination';
 import { SearchIcon } from '../components/SvgIcons';
+import { debounce } from "lodash";
 
 interface PaginationState {
   breweries: Brewery[];
@@ -35,27 +36,32 @@ const Breweries: React.FC = () => {
   const [statuses, setStatuses] = useState<BreweryStatus[]>([]);
   const [types, setTypes] = useState<BreweryType[]>([]);
   const [activeFilters, setActiveFilters] = useState<ActiveFilter[]>([]);
-
+  const [searchQuery, setSearchQuery] = useState('');
+  const [suggestions, setSuggestions] = useState<Brewery[]>([]);
 
   const fetchBreweriesAndFilters = useCallback(async () => {
+    const statusIds = activeFilters.filter(f => f.type === 'status').map(f => f.id);
+    const typeIds = activeFilters.filter(f => f.type === 'type').map(f => f.id);
+
     try {
-      const [paginatedResponse, fetchedStatuses, fetchedTypes] = await Promise.all([
-        BreweryService.getPaginatedBreweries(pagination.currentPage, pagination.pageSize),
-        BreweryStatusService.getAllStatuses(),
-        BreweryTypeService.getAllTypes(),
-      ]);
-      setPagination((prev) => ({
+      const filteredResponse = await BreweryService.getFilteredPaginatedBreweries(statusIds, typeIds, pagination.currentPage, pagination.pageSize);
+      const fetchedStatuses = await BreweryStatusService.getAllStatuses();
+      const fetchedTypes = await BreweryTypeService.getAllTypes();
+
+      setPagination(prev => ({
         ...prev,
-        breweries: paginatedResponse.breweries,
-        totalBreweries: paginatedResponse.totalCount,
+        breweries: filteredResponse.breweries,
+        totalBreweries: filteredResponse.totalCount,
       }));
+
       setStatuses(fetchedStatuses);
       setTypes(fetchedTypes);
     } catch (error) {
       console.error('Failed to fetch data:', error);
       alert('Failed to fetch data. Please try again later.');
     }
-  }, [pagination.currentPage, pagination.pageSize]);
+  }, [pagination.currentPage, pagination.pageSize, activeFilters]);
+
 
   useEffect(() => {
     fetchBreweriesAndFilters();
@@ -70,7 +76,6 @@ const Breweries: React.FC = () => {
   };
 
   const handleFilterClick = (filter: ActiveFilter) => {
-    // Check if the filter is already active to prevent duplicates
     const isAlreadyActive = activeFilters.some(activeFilter => activeFilter.id === filter.id && activeFilter.type === filter.type);
     if (!isAlreadyActive) {
       setActiveFilters(prevFilters => [...prevFilters, filter]);
@@ -91,10 +96,29 @@ const Breweries: React.FC = () => {
     return { activeTypeIds, activeStatusIds };
   };
 
-  // Logginng the active filter IDs to the console
+  const fetchSuggestions = useCallback(debounce(async (query: string) => {
+    if (query.length >= 2) { // Assuming suggestions should start showing from 2 characters
+      try {
+        const breweries = await BreweryService.searchBreweriesByLongName(query);
+        setSuggestions(breweries);
+      } catch (error) {
+        console.error('Failed to fetch suggestions:', error);
+      }
+    } else {
+      setSuggestions([]);
+    }
+  }, 300), []); // Debounce for 300ms
+
+
   useEffect(() => {
+    fetchSuggestions(searchQuery);
+    return () => fetchSuggestions.cancel(); // Cancel the debounce on cleanup
+  }, [searchQuery, fetchSuggestions]);
+
+  // Logginng the active filter IDs to the console
+  /*useEffect(() => {
     exportActiveFilterIds();
-  }, [activeFilters]);
+  }, [activeFilters]);*/
 
   return (
     <>
@@ -132,19 +156,44 @@ const Breweries: React.FC = () => {
               </ul>
             </div>
           </div>
-          <div className="d-flex">
+          <div className="d-flex" style={{ position: 'relative' }}>
             <div className="pe-2">
               <div className="input-group">
-                <input type="text" className="form-control" placeholder="Search..." aria-label="Search" />
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search..."
+                  aria-label="Search"
+                  value={searchQuery}
+                  onChange={e => setSearchQuery(e.target.value)}
+                  onKeyPress={e => {
+                    if (e.key === 'Enter') {
+                      console.log(searchQuery);
+                      e.preventDefault(); // Prevent the form from being submitted
+                    }
+                  }}
+                />
                 <span className="input-group-text">
                   <SearchIcon />
                 </span>
               </div>
+              {searchQuery.length >= 2 && suggestions.length > 0 && (
+                <ul className="list-group" style={{ position: 'absolute', width: '100%', zIndex: 1000 }}>
+                  {suggestions.map((brewery, index) => (
+                    <li key={index} className="list-group-item">
+                      <Link to={`/brewery/${brewery.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
+                        {brewery.longName}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
             <Link to={`/brewery/add`} style={{ textDecoration: 'none', color: "#000000" }}>
               <button className="btn btn-success text-nowrap">+ Add Brewery</button>
             </Link>
           </div>
+
         </div>
 
         <div className="active-filters pb-2">

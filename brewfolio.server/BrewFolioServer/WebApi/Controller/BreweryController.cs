@@ -28,6 +28,27 @@ namespace BrewFolioServer.WebApi.Controller
         }
 
         [Authorize]
+        [HttpGet("filtered")]
+        public async Task<IActionResult> GetFilteredPaginated([FromQuery] List<int> statusIds, [FromQuery] List<int> typeIds, int pageNumber = 1, int pageSize = 50)
+        {
+            var breweries = await _breweryService.GetFilteredPaginatedBreweriesAsync(statusIds, typeIds, pageNumber, pageSize);
+            if (breweries == null) return NotFound("Breweries not found");
+
+            var totalCount = await _breweryService.GetFilteredCountAsync(statusIds, typeIds);
+
+            return Ok(new { totalCount, breweries });
+        }
+
+        [Authorize]
+        [HttpGet("search")]
+        public async Task<IActionResult> SearchBreweriesByLongName([FromQuery] string query, int maxResults = 10)
+        {
+            var breweries = await _breweryService.SearchBreweriesByLongNameAsync(query, maxResults);
+            if (breweries == null) return NotFound("Breweries not found");
+            return Ok(breweries);
+        }
+
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Brewery>>> GetAll()
         {

@@ -208,6 +208,37 @@
   },
   {
     "ContainingType": "BrewFolioServer.WebApi.Controller.BreweryController",
+    "Method": "GetFilteredPaginated",
+    "RelativePath": "api/Brewery/filtered",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "statusIds",
+        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "typeIds",
+        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BrewFolioServer.WebApi.Controller.BreweryController",
     "Method": "GetPaginated",
     "RelativePath": "api/Brewery/paginated",
     "HttpMethod": "GET",
@@ -221,6 +252,27 @@
       },
       {
         "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BrewFolioServer.WebApi.Controller.BreweryController",
+    "Method": "SearchBreweriesByLongName",
+    "RelativePath": "api/Brewery/search",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "maxResults",
         "Type": "System.Int32",
         "IsRequired": false
       }

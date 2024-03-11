@@ -46,6 +46,87 @@ namespace BrewFolioServer.Infrastructure.Repository
                 }).ToListAsync();
         }
 
+        public async Task<IEnumerable<BreweryDTO>> GetFilteredPaginatedAsync(List<int> statusIds, List<int> typeIds, int pageNumber, int pageSize)
+        {
+            // Building the query with filters applied
+            var query = _context.Breweries.AsQueryable();
+
+            if (statusIds != null && statusIds.Any())
+            {
+                query = query.Where(b => statusIds.Contains(b.Status.Id));
+            }
+
+            if (typeIds != null && typeIds.Any())
+            {
+                query = query.Where(b => typeIds.Contains(b.Type.Id));
+            }
+
+            // Applying pagination
+            var paginatedQuery = query
+                .OrderBy(b => b.Name) // Adjust ordering as needed
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize);
+
+            // Projecting the result to BreweryDTO
+            return await paginatedQuery.Select(brewery => new BreweryDTO
+            {
+                Id = brewery.Id,
+                Name = brewery.Name,
+                LongName = brewery.LongName,
+                Type = brewery.Type,
+                Status = brewery.Status,
+                Visited = brewery.Visited,
+                Beers = brewery.Beers.Select(beer => new BeerDTO
+                {
+                    Id = beer.Id,
+                    Name = beer.Name
+                }).ToList()
+            }).ToListAsync();
+        }
+
+        public async Task<int> GetFilteredCountAsync(List<int> statusIds, List<int> typeIds)
+        {
+            var query = _context.Breweries.AsQueryable();
+
+            if (statusIds != null && statusIds.Any())
+            {
+                query = query.Where(b => statusIds.Contains(b.Status.Id));
+            }
+
+            if (typeIds != null && typeIds.Any())
+            {
+                query = query.Where(b => typeIds.Contains(b.Type.Id));
+            }
+
+            // Instead of fetching the breweries, just get the count
+            return await query.CountAsync();
+        }
+
+        public async Task<IEnumerable<BreweryDTO>> SearchBreweriesByLongNameAsync(string query, int maxResults = 10)
+        {
+            query = query.ToLower(); // Convert query to lowercase for case-insensitive search
+
+            return await _context.Breweries
+                .Where(b => EF.Functions.Like(EF.Functions.Collate(b.LongName.ToLower(), "Latin1_General_CI_AI"), $"%{query}%"))
+                .OrderBy(b => b.LongName)
+                .Take(maxResults)
+                .Select(brewery => new BreweryDTO
+                {
+                    Id = brewery.Id,
+                    Name = brewery.Name,
+                    LongName = brewery.LongName,
+                    Type = brewery.Type,
+                    Status = brewery.Status,
+                    Visited = brewery.Visited,
+                    Beers = brewery.Beers.Select(beer => new BeerDTO
+                    {
+                        Id = beer.Id,
+                        Name = beer.Name
+                    }).ToList()
+                })
+                .ToListAsync();
+        }
+
         public async Task<int> GetTotalCountAsync()
         {
             return await _context.Breweries.CountAsync();

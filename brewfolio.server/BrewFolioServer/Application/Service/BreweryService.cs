@@ -31,6 +31,21 @@ namespace BrewFolioServer.Application.Service
             return await _breweryRepository.GetPaginatedAsync(pageNumber, pageSize);
         }
 
+        public async Task<IEnumerable<BreweryDTO>> GetFilteredPaginatedBreweriesAsync(List<int> statusIds, List<int> typeIds, int pageNumber, int pageSize)
+        {
+            return await _breweryRepository.GetFilteredPaginatedAsync(statusIds, typeIds, pageNumber, pageSize);
+        }
+
+        public async Task<int> GetFilteredCountAsync(List<int> statusIds, List<int> typeIds)
+        {
+            return await _breweryRepository.GetFilteredCountAsync(statusIds, typeIds);
+        }
+
+        public async Task<IEnumerable<BreweryDTO>> SearchBreweriesByLongNameAsync(string query, int maxResults = 10)
+        {
+            return await _breweryRepository.SearchBreweriesByLongNameAsync(query, maxResults);
+        }
+
         public async Task<int> GetTotalBreweriesCountAsync()
         {
             return await _breweryRepository.GetTotalCountAsync();
