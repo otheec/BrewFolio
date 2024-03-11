@@ -1,11 +1,14 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { BreweryService } from '../api/BreweryService';
+import { BreweryStatusService } from '../api/BreweryStatusService';
+import { BreweryTypeService } from '../api/BreweryTypeService';
 import { Brewery } from '../model/Brewery';
+import { BreweryStatus } from '../model/BreweryStatus';
+import { BreweryType } from '../model/BreweryType';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Pagination from '../components/Pagination';
-import { PlaceholderIcon } from '../components/SvgIcons';
 import { SearchIcon } from '../components/SvgIcons';
 
 interface PaginationState {
@@ -13,6 +16,12 @@ interface PaginationState {
   currentPage: number;
   pageSize: number;
   totalBreweries: number;
+}
+
+interface ActiveFilter {
+  id: number;
+  type: 'status' | 'type';
+  name: string;
 }
 
 const Breweries: React.FC = () => {
@@ -23,27 +32,69 @@ const Breweries: React.FC = () => {
     totalBreweries: 0,
   });
 
-  const fetchBreweries = useCallback(async () => {
+  const [statuses, setStatuses] = useState<BreweryStatus[]>([]);
+  const [types, setTypes] = useState<BreweryType[]>([]);
+  const [activeFilters, setActiveFilters] = useState<ActiveFilter[]>([]);
+
+
+  const fetchBreweriesAndFilters = useCallback(async () => {
     try {
-      const paginatedResponse = await BreweryService.getPaginatedBreweries(pagination.currentPage, pagination.pageSize);
+      const [paginatedResponse, fetchedStatuses, fetchedTypes] = await Promise.all([
+        BreweryService.getPaginatedBreweries(pagination.currentPage, pagination.pageSize),
+        BreweryStatusService.getAllStatuses(),
+        BreweryTypeService.getAllTypes(),
+      ]);
       setPagination((prev) => ({
         ...prev,
         breweries: paginatedResponse.breweries,
         totalBreweries: paginatedResponse.totalCount,
       }));
+      setStatuses(fetchedStatuses);
+      setTypes(fetchedTypes);
     } catch (error) {
-      console.error('Failed to fetch breweries:', error);
-      alert('Failed to fetch breweries. Please try again later.');
+      console.error('Failed to fetch data:', error);
+      alert('Failed to fetch data. Please try again later.');
     }
   }, [pagination.currentPage, pagination.pageSize]);
 
   useEffect(() => {
-    fetchBreweries();
-  }, [fetchBreweries]);
+    fetchBreweriesAndFilters();
+  }, [fetchBreweriesAndFilters]);
 
   const handlePageChange = (newPage: number) => {
     setPagination((prev) => ({ ...prev, currentPage: newPage }));
   };
+
+  const removeFilter = (filterToRemove: ActiveFilter) => {
+    setActiveFilters(prevFilters => prevFilters.filter(filter => filter.id !== filterToRemove.id || filter.type !== filterToRemove.type));
+  };
+
+  const handleFilterClick = (filter: ActiveFilter) => {
+    // Check if the filter is already active to prevent duplicates
+    const isAlreadyActive = activeFilters.some(activeFilter => activeFilter.id === filter.id && activeFilter.type === filter.type);
+    if (!isAlreadyActive) {
+      setActiveFilters(prevFilters => [...prevFilters, filter]);
+    }
+  };
+
+  const exportActiveFilterIds = () => {
+    const activeTypeIds = activeFilters
+      .filter(filter => filter.type === 'type')
+      .map(filter => filter.id);
+    const activeStatusIds = activeFilters
+      .filter(filter => filter.type === 'status')
+      .map(filter => filter.id);
+
+    console.log('Active Type IDs:', activeTypeIds);
+    console.log('Active Status IDs:', activeStatusIds);
+
+    return { activeTypeIds, activeStatusIds };
+  };
+
+  // Logginng the active filter IDs to the console
+  useEffect(() => {
+    exportActiveFilterIds();
+  }, [activeFilters]);
 
   return (
     <>
@@ -57,9 +108,13 @@ const Breweries: React.FC = () => {
                 Status Filter
               </button>
               <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="#">Action</a></li>
-                <li><a className="dropdown-item" href="#">Another action</a></li>
-                <li><a className="dropdown-item" href="#">Something else here</a></li>
+                {statuses.map((status) => (
+                  <li key={status.id} onClick={() => handleFilterClick({ id: status.id, type: 'status', name: status.status })}>
+                    <div className="dropdown-item">
+                      {status.status}
+                    </div>
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="dropdown">
@@ -67,9 +122,13 @@ const Breweries: React.FC = () => {
                 Type Filter
               </button>
               <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="#">Action</a></li>
-                <li><a className="dropdown-item" href="#">Another action</a></li>
-                <li><a className="dropdown-item" href="#">Something else here</a></li>
+                {types.map((type) => (
+                  <li key={type.id} onClick={() => handleFilterClick({ id: type.id, type: 'type', name: type.type })}>
+                    <div className="dropdown-item">
+                      {type.type}
+                    </div>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -87,6 +146,15 @@ const Breweries: React.FC = () => {
             </Link>
           </div>
         </div>
+
+        <div className="active-filters pb-2">
+          {activeFilters.map((filter, index) => (
+            <span key={index} className="badge rounded-pill text-bg-primary me-2" onClick={() => removeFilter(filter)}>
+              {filter.name} <span aria-hidden="true">&times;</span>
+            </span>
+          ))}
+        </div>
+
         <div className="border rounded">
           <div className="border-bottom p-2 bg-body-secondary  ">
             <div className="row">
@@ -107,7 +175,7 @@ const Breweries: React.FC = () => {
                   </Link>
                 </div>
                 <div className="col-7">
-                  <span className="d-block">{brewery.longName}</span>
+                  <span className="d-block">{brewery.longName}, {brewery.type.type}, {brewery.status.status}</span>
                 </div>
                 <div className="col-2 d-flex justify-content-end">
                   <Link to={`/brewery/edit/${brewery.id}`} style={{ textDecoration: 'none', color: "#000000" }}>

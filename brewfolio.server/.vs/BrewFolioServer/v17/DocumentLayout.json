@@ -1,118 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Otmar\\OneDrive\\Plocha\\BrewFolio\\brewfolio.server\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{45A1808B-9337-443C-9535-F2D2C77C6204}|BrewFolioServer\\BrewFolioServer.csproj|c:\\users\\otmar\\onedrive\\plocha\\brewfolio\\brewfolio.server\\brewfolioserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{45A1808B-9337-443C-9535-F2D2C77C6204}|BrewFolioServer\\BrewFolioServer.csproj|solutionrelative:brewfolioserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{45A1808B-9337-443C-9535-F2D2C77C6204}|BrewFolioServer\\BrewFolioServer.csproj|c:\\users\\otmar\\onedrive\\plocha\\brewfolio\\brewfolio.server\\brewfolioserver\\webapi\\controller\\utilitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{45A1808B-9337-443C-9535-F2D2C77C6204}|BrewFolioServer\\BrewFolioServer.csproj|solutionrelative:brewfolioserver\\webapi\\controller\\utilitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{45A1808B-9337-443C-9535-F2D2C77C6204}|BrewFolioServer\\BrewFolioServer.csproj|c:\\users\\otmar\\onedrive\\plocha\\brewfolio\\brewfolio.server\\brewfolioserver\\application\\service\\fetchercsvservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{45A1808B-9337-443C-9535-F2D2C77C6204}|BrewFolioServer\\BrewFolioServer.csproj|solutionrelative:brewfolioserver\\application\\service\\fetchercsvservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{45A1808B-9337-443C-9535-F2D2C77C6204}|BrewFolioServer\\BrewFolioServer.csproj|c:\\users\\otmar\\onedrive\\plocha\\brewfolio\\brewfolio.server\\brewfolioserver\\webapi\\controller\\beercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{45A1808B-9337-443C-9535-F2D2C77C6204}|BrewFolioServer\\BrewFolioServer.csproj|solutionrelative:brewfolioserver\\webapi\\controller\\beercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{45A1808B-9337-443C-9535-F2D2C77C6204}|BrewFolioServer\\BrewFolioServer.csproj|c:\\users\\otmar\\onedrive\\plocha\\brewfolio\\brewfolio.server\\brewfolioserver\\application\\interface\\ibeerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{45A1808B-9337-443C-9535-F2D2C77C6204}|BrewFolioServer\\BrewFolioServer.csproj|solutionrelative:brewfolioserver\\application\\interface\\ibeerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{45A1808B-9337-443C-9535-F2D2C77C6204}|BrewFolioServer\\BrewFolioServer.csproj|c:\\users\\otmar\\onedrive\\plocha\\brewfolio\\brewfolio.server\\brewfolioserver\\application\\service\\beerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{45A1808B-9337-443C-9535-F2D2C77C6204}|BrewFolioServer\\BrewFolioServer.csproj|solutionrelative:brewfolioserver\\application\\service\\beerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Otmar\\OneDrive\\Plocha\\BrewFolio\\brewfolio.server\\BrewFolioServer\\Program.cs",
-              "RelativeDocumentMoniker": "BrewFolioServer\\Program.cs",
-              "ToolTip": "C:\\Users\\Otmar\\OneDrive\\Plocha\\BrewFolio\\brewfolio.server\\BrewFolioServer\\Program.cs",
-              "RelativeToolTip": "BrewFolioServer\\Program.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-10T22:16:19.657Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UtilityController.cs",
-              "DocumentMoniker": "C:\\Users\\Otmar\\OneDrive\\Plocha\\BrewFolio\\brewfolio.server\\BrewFolioServer\\WebApi\\Controller\\UtilityController.cs",
-              "RelativeDocumentMoniker": "BrewFolioServer\\WebApi\\Controller\\UtilityController.cs",
-              "ToolTip": "C:\\Users\\Otmar\\OneDrive\\Plocha\\BrewFolio\\brewfolio.server\\BrewFolioServer\\WebApi\\Controller\\UtilityController.cs",
-              "RelativeToolTip": "BrewFolioServer\\WebApi\\Controller\\UtilityController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-09T11:12:49.362Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "FetcherCSVService.cs",
-              "DocumentMoniker": "C:\\Users\\Otmar\\OneDrive\\Plocha\\BrewFolio\\brewfolio.server\\BrewFolioServer\\Application\\Service\\FetcherCSVService.cs",
-              "RelativeDocumentMoniker": "BrewFolioServer\\Application\\Service\\FetcherCSVService.cs",
-              "ToolTip": "C:\\Users\\Otmar\\OneDrive\\Plocha\\BrewFolio\\brewfolio.server\\BrewFolioServer\\Application\\Service\\FetcherCSVService.cs",
-              "RelativeToolTip": "BrewFolioServer\\Application\\Service\\FetcherCSVService.cs",
-              "ViewState": "AQIAACoAAAAAAAAAAAAYwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-09T11:12:39.116Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IBeerService.cs",
-              "DocumentMoniker": "C:\\Users\\Otmar\\OneDrive\\Plocha\\BrewFolio\\brewfolio.server\\BrewFolioServer\\Application\\Interface\\IBeerService.cs",
-              "RelativeDocumentMoniker": "BrewFolioServer\\Application\\Interface\\IBeerService.cs",
-              "ToolTip": "C:\\Users\\Otmar\\OneDrive\\Plocha\\BrewFolio\\brewfolio.server\\BrewFolioServer\\Application\\Interface\\IBeerService.cs",
-              "RelativeToolTip": "BrewFolioServer\\Application\\Interface\\IBeerService.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAxwBAAAABNAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T22:12:28.604Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "BeerService.cs",
-              "DocumentMoniker": "C:\\Users\\Otmar\\OneDrive\\Plocha\\BrewFolio\\brewfolio.server\\BrewFolioServer\\Application\\Service\\BeerService.cs",
-              "RelativeDocumentMoniker": "BrewFolioServer\\Application\\Service\\BeerService.cs",
-              "ToolTip": "C:\\Users\\Otmar\\OneDrive\\Plocha\\BrewFolio\\brewfolio.server\\BrewFolioServer\\Application\\Service\\BeerService.cs",
-              "RelativeToolTip": "BrewFolioServer\\Application\\Service\\BeerService.cs",
-              "ViewState": "AQIAADcAAAAAAAAAAAAwwEQAAABaAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T22:11:08.363Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "BeerController.cs",
-              "DocumentMoniker": "C:\\Users\\Otmar\\OneDrive\\Plocha\\BrewFolio\\brewfolio.server\\BrewFolioServer\\WebApi\\Controller\\BeerController.cs",
-              "RelativeDocumentMoniker": "BrewFolioServer\\WebApi\\Controller\\BeerController.cs",
-              "ToolTip": "C:\\Users\\Otmar\\OneDrive\\Plocha\\BrewFolio\\brewfolio.server\\BrewFolioServer\\WebApi\\Controller\\BeerController.cs",
-              "RelativeToolTip": "BrewFolioServer\\WebApi\\Controller\\BeerController.cs",
-              "ViewState": "AQIAAD0AAAAAAAAAAAAcwFUAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-07T19:28:43.638Z"
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }
