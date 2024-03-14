@@ -1,4 +1,5 @@
 ﻿using BrewFolioServer.Application.Interface;
+using BrewFolioServer.Domain.DTO;
 using BrewFolioServer.Domain.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -47,6 +48,24 @@ namespace BrewFolioServer.WebApi.Controller
             if (breweries == null) return NotFound("Breweries not found");
             return Ok(breweries);
         }
+
+        [Authorize]
+        [HttpGet("searchAndFilter")]
+        public async Task<IActionResult> GetFilteredAndSearchByLongNameAsync(
+            [FromQuery] List<int> statusIds,
+            [FromQuery] List<int> typeIds,
+            [FromQuery] string searchQuery = null,
+            int pageNumber = 1,
+            int pageSize = 50)
+        {
+            var breweries = await _breweryService.GetFilteredAndSearchByLongNameAsync(statusIds, typeIds, searchQuery, pageNumber, pageSize);
+            if (breweries == null) return NotFound("Breweries not found");
+
+            var totalCount = await _breweryService.GetFilteredAndSearchByLongNameCountAsync(statusIds, typeIds, searchQuery);
+
+            return Ok(new { totalCount, breweries });
+        }
+
 
         [Authorize]
         [HttpGet]

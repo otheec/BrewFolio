@@ -78,6 +78,32 @@
   },
   {
     "ContainingType": "BrewFolioServer.WebApi.Controller.BeerController",
+    "Method": "Put",
+    "RelativePath": "api/Beer/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "beer",
+        "Type": "BrewFolioServer.Domain.Model.Beer",
+        "IsRequired": true
+      },
+      {
+        "Name": "breweryId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BrewFolioServer.WebApi.Controller.BeerController",
     "Method": "Delete",
     "RelativePath": "api/Beer/{id}",
     "HttpMethod": "DELETE",
@@ -273,6 +299,42 @@
       },
       {
         "Name": "maxResults",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BrewFolioServer.WebApi.Controller.BreweryController",
+    "Method": "GetFilteredAndSearchByLongNameAsync",
+    "RelativePath": "api/Brewery/searchAndFilter",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "statusIds",
+        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "typeIds",
+        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "searchQuery",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
         "Type": "System.Int32",
         "IsRequired": false
       }

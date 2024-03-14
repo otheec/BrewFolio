@@ -46,6 +46,24 @@ namespace BrewFolioServer.Application.Service
             return await _breweryRepository.SearchBreweriesByLongNameAsync(query, maxResults);
         }
 
+        public async Task<IEnumerable<BreweryDTO>> GetFilteredAndSearchByLongNameAsync(
+            List<int> statusIds,
+            List<int> typeIds,
+            string searchQuery,
+            int pageNumber,
+            int pageSize)
+        {
+            return await _breweryRepository.GetFilteredAndSearchByLongNameAsync(statusIds, typeIds, searchQuery, pageNumber, pageSize);
+        }
+
+        public async Task<int> GetFilteredAndSearchByLongNameCountAsync(
+            List<int> statusIds,
+            List<int> typeIds,
+            string searchQuery)
+        {
+            return await _breweryRepository.GetFilteredAndSearchByLongNameCountAsync(statusIds, typeIds, searchQuery);
+        }
+
         public async Task<int> GetTotalBreweriesCountAsync()
         {
             return await _breweryRepository.GetTotalCountAsync();
@@ -65,7 +83,7 @@ namespace BrewFolioServer.Application.Service
         {
             var breweryStatus = await _breweryStatusRepository.GetByIdAsync(breweryStatusId);
             var breweryType = await _breweryTypeRepository.GetByIdAsync(breweryTypeId);
-            var beers = await _beerRepository.GetByIdsAsync(beersIds);
+            var beers = await _beerRepository.GetBeersByIdsAsync(beersIds);
 
             if (breweryStatus == null) 
             {

@@ -70,30 +70,32 @@ const Beers: React.FC = () => {
   return (
     <>
       <Navbar />
-      <main className="container my-4">
+      <main className="container mt-2 mb-4">
         <div className="my-3 p-3 bg-body-tertiary rounded shadow-sm">
           <div className="d-flex border-bottom justify-content-between align-items-center pb-3">
             <h1 className="mb-0">Beers</h1>
-            <button className="btn btn-success">+ Add Beer</button>
+            <Link to={`/beer/add`} style={{ textDecoration: 'none', color: "#000000" }}>
+              <button className="btn btn-success">+ Add Beer</button>
+            </Link>
           </div>
-          {pagination.beers.map((beer) => (
-            <div key={beer.id} className="d-flex text-muted pt-3">
-              <PlaceholderIcon />
-              <div className="pb-3 mb-0 small lh-sm border-bottom w-100">
-                <div className="d-flex justify-content-between">
-                  <Link to={`/beer/${beer.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
-                    <strong>{beer.name}</strong>
-                  </Link>
-                  <div className="ms-auto d-flex justify-content-end">
-                    <button type="button" className="page-link pe-3">Edit</button>
-                    <button type="button" className="page-link" onClick={() => openModalForDelete(beer)}>Delete</button>
+          {pagination.beers.map((beer, index) => (
+            <Link to={`/beer/${beer.id}`} style={{ textDecoration: 'none', color: "#000000" }} key={index}>
+              <div key={beer.id} className="d-flex text-muted pt-3">
+                <div className="pb-3 mb-0 small lh-sm border-bottom w-100">
+                  <div className="d-flex justify-content-between">
+                    <Link to={`/beer/${beer.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
+                      <strong>{beer.name}</strong>
+                    </Link>
+                    <Link to={`/beer/edit/${beer.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
+                      <button type="button" className="page-link pe-3">Edit</button>
+                    </Link>
                   </div>
+                  <Link to={`/brewery/${beer.brewery.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
+                    <span className="d-block">{beer.brewery?.name}  <LinkIcon /></span>
+                  </Link>
                 </div>
-                <Link to={`/brewery/${beer.brewery.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
-                  <span className="d-block">{beer.brewery?.name}  <LinkIcon /></span>
-                </Link>
               </div>
-            </div>
+            </Link>
           ))}
           <Pagination currentPage={pagination.currentPage} totalPages={Math.ceil(pagination.totalBeers / pagination.pageSize)} onPageChange={handlePageChange} />
         </div>

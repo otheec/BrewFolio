@@ -9,8 +9,8 @@ namespace BrewFolioServer.Application.Interface
         Task<int> GetTotalBeersCountAsync();
         Task<IEnumerable<BeerDTO>> GetAllBeersAsync();
         Task<BeerDTO> GetBeerByIdAsync(int id);
-        Task AddBeerAsync(Beer beer, int breweryId);
-        //Task UpdateBeerAsync(Beer beer, int breweryId);
+        //Task AddBeerAsync(Beer beer, int breweryId);
+        Task UpdateBeerAsync(Beer beer, int breweryId);
         Task DeleteBeerAsync(int id);
         Task AddBeerAsync(Beer beer, string longName);
         Task<Beer> AddBeerAsync(BeerDTO beerDto, int breweryId);

@@ -127,6 +127,87 @@ namespace BrewFolioServer.Infrastructure.Repository
                 .ToListAsync();
         }
 
+        public async Task<int> GetFilteredAndSearchByLongNameCountAsync(
+            List<int> statusIds,
+            List<int> typeIds,
+            string searchQuery)
+        {
+            var query = _context.Breweries.AsQueryable();
+
+            if (statusIds != null && statusIds.Any())
+            {
+                query = query.Where(b => statusIds.Contains(b.Status.Id));
+            }
+
+            if (typeIds != null && typeIds.Any())
+            {
+                query = query.Where(b => typeIds.Contains(b.Type.Id));
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchQuery))
+            {
+                // Normalize search query for case-insensitive search
+                var normalizedSearchQuery = searchQuery.ToLower();
+                query = query.Where(b => EF.Functions.Like(EF.Functions.Collate(b.LongName.ToLower(), "Latin1_General_CI_AI"), $"%{normalizedSearchQuery}%"));
+            }
+
+            return await query.CountAsync();
+        }
+
+
+        public async Task<IEnumerable<BreweryDTO>> GetFilteredAndSearchByLongNameAsync(
+            List<int> statusIds, 
+            List<int> typeIds, 
+            string searchQuery, 
+            int pageNumber, 
+            int pageSize)
+        {
+            // Normalize search query for case-insensitive search
+            searchQuery = searchQuery?.ToLower() ?? string.Empty;
+
+            var query = _context.Breweries.AsQueryable();
+
+            // Apply status and type filters
+            if (statusIds != null && statusIds.Any())
+            {
+                query = query.Where(b => statusIds.Contains(b.Status.Id));
+            }
+
+            if (typeIds != null && typeIds.Any())
+            {
+                query = query.Where(b => typeIds.Contains(b.Type.Id));
+            }
+
+            // Apply search by longName
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                query = query.Where(b => EF.Functions.Like(EF.Functions.Collate(b.LongName.ToLower(), "Latin1_General_CI_AI"), $"%{searchQuery}%"));
+            }
+
+            // Pagination
+            var paginatedQuery = query
+                .OrderBy(b => b.Name)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize);
+
+            // Projecting the result to BreweryDTO
+            return await paginatedQuery.Select(brewery => new BreweryDTO
+            {
+                Id = brewery.Id,
+                Name = brewery.Name,
+                LongName = brewery.LongName,
+                Type = brewery.Type,
+                Status = brewery.Status,
+                Visited = brewery.Visited,
+                Beers = brewery.Beers.Select(beer => new BeerDTO
+                {
+                    Id = beer.Id,
+                    Name = beer.Name
+                }).ToList()
+            }).ToListAsync();
+        }
+
+
         public async Task<int> GetTotalCountAsync()
         {
             return await _context.Breweries.CountAsync();

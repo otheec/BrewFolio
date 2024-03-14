@@ -64,5 +64,34 @@ export const BreweryService = {
     const breweries = await response.json() as Brewery[];
     return breweries;
   },  
+
+  getFilteredAndSearchByLongName: async (
+    statusIds: number[] = [],
+    typeIds: number[] = [],
+    searchQuery = '',
+    pageNumber: number = 1, 
+    pageSize: number = 50
+  ) => {
+    const statusQuery = statusIds.map(id => `statusIds=${id}`).join('&');
+    const typeQuery = typeIds.map(id => `typeIds=${id}`).join('&');
+    const searchQueryParam = `searchQuery=${encodeURIComponent(searchQuery)}`;
+    const paginationQuery = `pageNumber=${pageNumber}&pageSize=${pageSize}`;
   
+    const queryParams = `${statusQuery}&${typeQuery}&${searchQueryParam}&${paginationQuery}`;
+  
+    const response = await fetch(`${BASE_URL}/brewery/searchAndFilter?${queryParams}`, {
+      credentials: 'include',
+    });
+  
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+  
+    const data = await response.json();
+  
+    return {
+      totalCount: data.totalCount,
+      breweries: data.breweries as Brewery[]
+    };
+  },  
 };

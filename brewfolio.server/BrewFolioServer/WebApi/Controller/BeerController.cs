@@ -73,13 +73,13 @@ namespace BrewFolioServer.WebApi.Controller
             return Ok(new { id = beer.Id });
         }
 
-        /*[HttpPut("{id}")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] Beer beer, [FromQuery] int breweryId)
         {
             if (id != beer.Id) return BadRequest();
             await _beerService.UpdateBeerAsync(beer, breweryId);
             return NoContent();
-        }*/
+        }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)

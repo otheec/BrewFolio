@@ -67,4 +67,41 @@ export const BeerService = {
     }
   },
 
+  updateBeer: async (id: number, beer: Beer, breweryId: number): Promise<void> => {
+    // Mocking Brewery data with generic placeholders
+    const mockedBrewery = {
+      id: breweryId, // Use the provided breweryId
+      name: "Mocked Brewery Name",
+      longName: "Mocked Brewery Long Name",
+      type: "ExampleType", // Placeholder, replace with a valid BreweryType from your backend
+      status: "ExampleStatus", // Placeholder, replace with a valid BreweryStatus from your backend
+      visited: true, // Example boolean value
+      beers: [], // Assuming an empty array is acceptable here
+    };
+  
+    // Include the mocked brewery in your beer object
+    const beerToUpdate = {
+      ...beer,
+      brewery: mockedBrewery,
+    };
+  
+    const url = `${BASE_URL}/beer/${encodeURIComponent(id)}?breweryId=${encodeURIComponent(breweryId)}`;
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(beerToUpdate), // Send the beer object including the mocked brewery
+      credentials: 'include',
+    });
+  
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw an Error(`HTTP error! status: ${response.status}, ${errorText}`);
+    }
+  },
+  
+  
+  
+  
 };

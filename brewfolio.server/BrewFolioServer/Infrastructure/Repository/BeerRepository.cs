@@ -16,12 +16,17 @@ namespace BrewFolioServer.Infrastructure.Repository
             _context = context;
         }
 
+        public async Task<Beer> GetBeerByIdAsync(int id)
+        {
+            return await _context.Beers.FirstOrDefaultAsync(b => b.Id == id);
+        }
+
         public async Task<int> GetTotalCountAsync()
         {
             return await _context.Beers.CountAsync();
         }
 
-        public async Task<IEnumerable<BeerDTO>> GetPaginatedAsync(int pageNumber, int pageSize)
+        public async Task<IEnumerable<BeerDTO>> GetBeerDTOsPaginatedAsync(int pageNumber, int pageSize)
         {
             return await _context.Beers
                 .OrderBy(b => b.Id) // Assuming ordering by Id, adjust as necessary
@@ -44,7 +49,7 @@ namespace BrewFolioServer.Infrastructure.Repository
                 }).ToListAsync();
         }
 
-        public async Task<IEnumerable<BeerDTO>> GetAllAsync()
+        public async Task<IEnumerable<BeerDTO>> GetBeerDTOsAllAsync()
         {
             return await _context.Beers
                 .Select(beer => new BeerDTO
@@ -64,7 +69,7 @@ namespace BrewFolioServer.Infrastructure.Repository
                 }).ToListAsync();
         }
 
-        public async Task<BeerDTO> GetByIdAsync(int id)
+        public async Task<BeerDTO> GetBeersDTOsByIdAsync(int id)
         {
             var beer = await _context.Beers
                 .Where(b => b.Id == id)
@@ -87,7 +92,7 @@ namespace BrewFolioServer.Infrastructure.Repository
             return beer;
         }
 
-        public async Task<IEnumerable<Beer>> GetByIdsAsync(IEnumerable<int> beerIds)
+        public async Task<IEnumerable<Beer>> GetBeersByIdsAsync(IEnumerable<int> beerIds)
         {
             return await _context.Beers
                 .Include(b => b.Brewery)
