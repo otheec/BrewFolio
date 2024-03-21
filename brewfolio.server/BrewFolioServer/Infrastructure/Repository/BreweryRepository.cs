@@ -1,5 +1,4 @@
-﻿using BrewFolioServer.Domain.DTO;
-using BrewFolioServer.Domain.Model;
+﻿using BrewFolioServer.Domain.Model;
 using BrewFolioServer.Infrastructure.Data;
 using BrewFolioServer.Infrastructure.Interface;
 using Microsoft.EntityFrameworkCore;
@@ -160,20 +159,20 @@ namespace BrewFolioServer.Infrastructure.Repository
 
         public async Task<IEnumerable<Brewery>> GetAllAsync()
         {
-            return await _context.Breweries.ToListAsync();
+            return await _context.Breweries
+                .Include(b => b.Beers)
+                .Include(b => b.Type)
+                .Include(b => b.Status)
+                .ToListAsync();
         }
 
         public async Task<Brewery> GetByIdAsync(int id)
         {
-            var brewery = await _context.Breweries
+            return await _context.Breweries
                 .Include(b => b.Type)
                 .Include(b => b.Status)
                 .Include(b => b.Beers)
                 .FirstOrDefaultAsync(b => b.Id == id);
-
-            if (brewery == null) return null;
-
-            return brewery;
         }
 
         public async Task<Brewery> GetByLongNameAsync(string longName)

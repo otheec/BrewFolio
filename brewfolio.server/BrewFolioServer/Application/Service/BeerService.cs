@@ -1,5 +1,4 @@
 ﻿using BrewFolioServer.Application.Interface;
-using BrewFolioServer.Domain.DTO;
 using BrewFolioServer.Domain.Model;
 using BrewFolioServer.Infrastructure.Interface;
 
@@ -16,10 +15,10 @@ namespace BrewFolioServer.Application.Service
             _breweryRepository = breweryRepository;
         }
 
-        public async Task<IEnumerable<BeerDTO>> GetPaginatedBeersAsync(int pageNumber, int pageSize)
+        public async Task<IEnumerable<Beer>> GetPaginatedBeersAsync(int pageNumber, int pageSize)
         {
-            var beersDTO = await _beerRepository.GetBeersPaginatedAsync(pageNumber, pageSize);
-            return beersDTO.Select(beer => BeerDTO.ConvertToBeerDTO(beer));
+            var beers = await _beerRepository.GetPaginatedAsync(pageNumber, pageSize);
+            return beers.Select(beer => beer.PrepareForSerialization());
         }
 
         public async Task<int> GetTotalBeersCountAsync()
@@ -27,15 +26,16 @@ namespace BrewFolioServer.Application.Service
             return await _beerRepository.GetTotalCountAsync();
         }
 
-        public async Task<IEnumerable<BeerDTO>> GetAllBeersAsync()
+        public async Task<IEnumerable<Beer>> GetAllBeersAsync()
         {
-            var beersDTO = await _beerRepository.GetAllBeersAsync();
-            return beersDTO.Select(beer => BeerDTO.ConvertToBeerDTO(beer));
+            var beers = await _beerRepository.GetAllAsync();
+            return beers.Select(beer => beer.PrepareForSerialization());
         }
 
-        public async Task<BeerDTO> GetBeerByIdAsync(int id)
+        public async Task<Beer> GetBeerByIdAsync(int id)
         {
-            return BeerDTO.ConvertToBeerDTO(await _beerRepository.GetBeerByIdAsync(id));
+            var beer = await _beerRepository.GetByIdAsync(id);
+            return beer.PrepareForSerialization();
 
         }
 
@@ -49,7 +49,7 @@ namespace BrewFolioServer.Application.Service
             await _beerRepository.AddAsync(beer);
         }*/
 
-        public async Task<Beer> AddBeerAsync(BeerDTO beerDto, int breweryId)
+        public async Task<Beer> AddBeerAsync(Beer beerDto, int breweryId)
         {
             var brewery = await _breweryRepository.GetBreweryByIdAsync(breweryId) ?? throw new ArgumentException("Brewery not found.");
             var beer = new Beer
@@ -88,7 +88,7 @@ namespace BrewFolioServer.Application.Service
         public async Task UpdateBeerAsync(Beer beer, int breweryId)
         {
             var brewery = await _breweryRepository.GetBreweryByIdAsync(breweryId) ?? throw new ArgumentException("Brewery not found.");
-            var existingBeer = await _beerRepository.GetBeerByIdAsync(beer.Id) ?? throw new ArgumentException("Beer not found.");
+            var existingBeer = await _beerRepository.GetByIdAsync(beer.Id) ?? throw new ArgumentException("Beer not found.");
 
             existingBeer.Name = beer.Name;
             existingBeer.Brewery = brewery;

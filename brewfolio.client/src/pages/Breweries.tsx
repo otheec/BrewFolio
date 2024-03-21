@@ -154,6 +154,7 @@ const Breweries: React.FC = () => {
                     onKeyPress={e => {
                       if (e.key === 'Enter') {
                         setSearchFilter(searchQuery);
+                        setSearchQuery(''); // Clear the search input
                         e.preventDefault(); // Prevent the form from being submitted
                       }
                     }}

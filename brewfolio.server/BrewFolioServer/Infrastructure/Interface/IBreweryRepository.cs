@@ -1,5 +1,4 @@
-﻿using BrewFolioServer.Domain.DTO;
-using BrewFolioServer.Domain.Model;
+﻿using BrewFolioServer.Domain.Model;
 
 namespace BrewFolioServer.Infrastructure.Interface
 {

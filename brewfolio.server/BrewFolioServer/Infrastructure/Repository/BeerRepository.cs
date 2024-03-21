@@ -1,5 +1,4 @@
-﻿using BrewFolioServer.Domain.DTO;
-using BrewFolioServer.Domain.Model;
+﻿using BrewFolioServer.Domain.Model;
 using BrewFolioServer.Infrastructure.Data;
 using BrewFolioServer.Infrastructure.Interface;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +15,7 @@ namespace BrewFolioServer.Infrastructure.Repository
             _context = context;
         }
 
-        public async Task<Beer> GetBeerByIdAsync(int id)
+        public async Task<Beer> GetByIdAsync(int id)
         {
             return await _context.Beers
                 .Include(b => b.Brewery)
@@ -28,7 +27,7 @@ namespace BrewFolioServer.Infrastructure.Repository
             return await _context.Beers.CountAsync();
         }
 
-        public async Task<IEnumerable<Beer>> GetBeersPaginatedAsync(int pageNumber, int pageSize)
+        public async Task<IEnumerable<Beer>> GetPaginatedAsync(int pageNumber, int pageSize)
         {
             return await _context.Beers
                 .Include(b => b.Brewery)
@@ -38,14 +37,14 @@ namespace BrewFolioServer.Infrastructure.Repository
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Beer>> GetAllBeersAsync()
+        public async Task<IEnumerable<Beer>> GetAllAsync()
         {
             return await _context.Beers
                 .Include(b => b.Brewery)
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Beer>> GetBeersByIdsAsync(IEnumerable<int> beerIds)
+        public async Task<IEnumerable<Beer>> GetByIdsAsync(IEnumerable<int> beerIds)
         {
             return await _context.Beers
                 .Include(b => b.Brewery)

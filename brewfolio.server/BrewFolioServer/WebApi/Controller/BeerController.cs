@@ -1,6 +1,5 @@
 ﻿using BrewFolioServer.Application.Interface;
 using BrewFolioServer.Application.Service;
-using BrewFolioServer.Domain.DTO;
 using BrewFolioServer.Domain.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -60,7 +59,7 @@ namespace BrewFolioServer.WebApi.Controller
 
         [Authorize]
         [HttpPost]
-        public async Task<ActionResult<Beer>> Post([FromBody] BeerDTO beerDto, [FromQuery] int breweryId)
+        public async Task<ActionResult<Beer>> Post([FromBody] Beer beerDto, [FromQuery] int breweryId)
         {
             var beer = await _beerService.AddBeerAsync(beerDto, breweryId);
             if (beer == null)

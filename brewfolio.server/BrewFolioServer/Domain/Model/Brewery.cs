@@ -25,6 +25,16 @@
         {
         }
 
-
+        public Brewery PrepareForSerialization()
+        {
+            if (Beers != null)
+            {
+                foreach (var beer in Beers)
+                {
+                    beer.Brewery = null;
+                }
+            }
+            return this;
+        }
     }
 }

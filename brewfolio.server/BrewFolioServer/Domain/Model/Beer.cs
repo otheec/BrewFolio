@@ -15,5 +15,14 @@
         public Beer()
         {
         }
+
+        public Beer PrepareForSerialization()
+        {
+            if(Brewery != null)
+            {
+                Brewery.Beers = null;
+            }
+            return this;
+        }
     }
 }

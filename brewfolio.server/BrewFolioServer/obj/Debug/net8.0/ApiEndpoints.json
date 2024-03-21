@@ -29,7 +29,7 @@
     "Parameters": [
       {
         "Name": "beerDto",
-        "Type": "BrewFolioServer.Domain.DTO.BeerDTO",
+        "Type": "BrewFolioServer.Domain.Model.Beer",
         "IsRequired": true
       },
       {
