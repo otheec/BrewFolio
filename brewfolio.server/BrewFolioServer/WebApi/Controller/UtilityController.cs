@@ -33,10 +33,8 @@ namespace BrewFolioServer.WebApi.Controller
             {
                 await file.CopyToAsync(stream);
                 stream.Position = 0;
-                using (var reader = new StreamReader(stream))
-                {
-                    fetcher.FetchFromCSV(reader);
-                }
+                using var reader = new StreamReader(stream);
+                fetcher.FetchFromCSV(reader);
             }
 
             await _fetcherService.AddFetchedCSVDataAsync(fetcher.Breweries, fetcher.Beers, fetcher.Types, fetcher.Statuses);

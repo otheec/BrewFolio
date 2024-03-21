@@ -28,12 +28,14 @@ namespace BrewFolioServer.Application.Service
 
         public async Task<IEnumerable<BreweryDTO>> GetPaginatedBreweriesAsync(int pageNumber, int pageSize)
         {
-            return await _breweryRepository.GetPaginatedAsync(pageNumber, pageSize);
+            var breweriesDTO = await _breweryRepository.GetPaginatedAsync(pageNumber, pageSize);
+            return breweriesDTO.Select(breweriesDTO => BreweryDTO.ConvertToBreweryDTO(breweriesDTO));
         }
 
         public async Task<IEnumerable<BreweryDTO>> GetFilteredPaginatedBreweriesAsync(List<int> statusIds, List<int> typeIds, int pageNumber, int pageSize)
         {
-            return await _breweryRepository.GetFilteredPaginatedAsync(statusIds, typeIds, pageNumber, pageSize);
+            var breweriesDTO = await _breweryRepository.GetFilteredPaginatedAsync(statusIds, typeIds, pageNumber, pageSize);
+            return breweriesDTO.Select(breweriesDTO => BreweryDTO.ConvertToBreweryDTO(breweriesDTO));
         }
 
         public async Task<int> GetFilteredCountAsync(List<int> statusIds, List<int> typeIds)
@@ -43,7 +45,8 @@ namespace BrewFolioServer.Application.Service
 
         public async Task<IEnumerable<BreweryDTO>> SearchBreweriesByLongNameAsync(string query, int maxResults = 10)
         {
-            return await _breweryRepository.SearchBreweriesByLongNameAsync(query, maxResults);
+            var breweriesDTO = await _breweryRepository.SearchBreweriesByLongNameAsync(query, maxResults);
+            return breweriesDTO.Select(breweriesDTO => BreweryDTO.ConvertToBreweryDTO(breweriesDTO));
         }
 
         public async Task<IEnumerable<BreweryDTO>> GetFilteredAndSearchByLongNameAsync(
@@ -53,7 +56,8 @@ namespace BrewFolioServer.Application.Service
             int pageNumber,
             int pageSize)
         {
-            return await _breweryRepository.GetFilteredAndSearchByLongNameAsync(statusIds, typeIds, searchQuery, pageNumber, pageSize);
+            var breweriesDTO = await _breweryRepository.GetFilteredAndSearchByLongNameAsync(statusIds, typeIds, searchQuery, pageNumber, pageSize);
+            return breweriesDTO.Select(breweriesDTO => BreweryDTO.ConvertToBreweryDTO(breweriesDTO));
         }
 
         public async Task<int> GetFilteredAndSearchByLongNameCountAsync(
@@ -71,12 +75,14 @@ namespace BrewFolioServer.Application.Service
 
         public async Task<IEnumerable<BreweryDTO>> GetAllBreweriesAsync()
         {
-            return await _breweryRepository.GetAllAsync();
+            var breweriesDTO = await _breweryRepository.GetAllAsync();
+            return breweriesDTO.Select(breweriesDTO => BreweryDTO.ConvertToBreweryDTO(breweriesDTO));
         }
 
         public async Task<BreweryDTO> GetBreweryByIdAsync(int id)
         {
-            return await _breweryRepository.GetByIdAsync(id);
+            var breweryDTO = await _breweryRepository.GetByIdAsync(id);
+            return BreweryDTO.ConvertToBreweryDTO(breweryDTO);
         }
 
         public async Task AddBreweryByIdsAsync(Brewery brewery, int breweryStatusId, int breweryTypeId, List<int> beersIds)

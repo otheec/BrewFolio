@@ -7,9 +7,8 @@ namespace BrewFolioServer.Infrastructure.Interface
     {
         Task<Beer> GetBeerByIdAsync(int id);
         Task<int> GetTotalCountAsync();
-        Task<IEnumerable<BeerDTO>> GetBeerDTOsPaginatedAsync(int pageNumber, int pageSize);
-        Task<IEnumerable<BeerDTO>> GetBeerDTOsAllAsync();
-        Task<BeerDTO> GetBeersDTOsByIdAsync(int id);
+        Task<IEnumerable<Beer>> GetBeersPaginatedAsync(int pageNumber, int pageSize);
+        Task<IEnumerable<Beer>> GetAllBeersAsync();
         Task<IEnumerable<Beer>> GetBeersByIdsAsync(IEnumerable<int> beerIds);
         Task AddAsync(Beer beer);
         Task UpdateAsync(Beer beer);

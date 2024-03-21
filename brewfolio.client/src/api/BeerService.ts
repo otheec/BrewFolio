@@ -67,7 +67,7 @@ export const BeerService = {
     }
   },
 
-  updateBeer: async (id: number, beer: Beer, breweryId: number): Promise<void> => {
+  /*updateBeer: async (id: number, beer: Beer, breweryId: number): Promise<void> => {
     // Mocking Brewery data with generic placeholders
     const mockedBrewery = {
       id: breweryId, // Use the provided breweryId
@@ -99,7 +99,7 @@ export const BeerService = {
       const errorText = await response.text();
       throw an Error(`HTTP error! status: ${response.status}, ${errorText}`);
     }
-  },
+  },*/
   
   
   

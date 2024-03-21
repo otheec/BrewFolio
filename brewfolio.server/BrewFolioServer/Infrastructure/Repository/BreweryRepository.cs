@@ -24,31 +24,17 @@ namespace BrewFolioServer.Infrastructure.Repository
                 .FirstOrDefaultAsync(b => b.Id == id);
         }
 
-        public async Task<IEnumerable<BreweryDTO>> GetPaginatedAsync(int pageNumber, int pageSize)
+        public async Task<IEnumerable<Brewery>> GetPaginatedAsync(int pageNumber, int pageSize)
         {
             return await _context.Breweries
                 .OrderBy(b => b.Name) // Adjust ordering as needed
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
-                .Select(brewery => new BreweryDTO
-                {
-                    Id = brewery.Id,
-                    Name = brewery.Name,
-                    LongName = brewery.LongName,
-                    Type = brewery.Type,
-                    Status = brewery.Status,
-                    Visited = brewery.Visited,
-                    Beers = brewery.Beers.Select(beer => new BeerDTO
-                    {
-                        Id = beer.Id,
-                        Name = beer.Name
-                    }).ToList()
-                }).ToListAsync();
+                .ToListAsync();
         }
 
-        public async Task<IEnumerable<BreweryDTO>> GetFilteredPaginatedAsync(List<int> statusIds, List<int> typeIds, int pageNumber, int pageSize)
+        public async Task<IEnumerable<Brewery>> GetFilteredPaginatedAsync(List<int> statusIds, List<int> typeIds, int pageNumber, int pageSize)
         {
-            // Building the query with filters applied
             var query = _context.Breweries.AsQueryable();
 
             if (statusIds != null && statusIds.Any())
@@ -61,27 +47,13 @@ namespace BrewFolioServer.Infrastructure.Repository
                 query = query.Where(b => typeIds.Contains(b.Type.Id));
             }
 
-            // Applying pagination
             var paginatedQuery = query
                 .OrderBy(b => b.Name) // Adjust ordering as needed
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize);
 
             // Projecting the result to BreweryDTO
-            return await paginatedQuery.Select(brewery => new BreweryDTO
-            {
-                Id = brewery.Id,
-                Name = brewery.Name,
-                LongName = brewery.LongName,
-                Type = brewery.Type,
-                Status = brewery.Status,
-                Visited = brewery.Visited,
-                Beers = brewery.Beers.Select(beer => new BeerDTO
-                {
-                    Id = beer.Id,
-                    Name = beer.Name
-                }).ToList()
-            }).ToListAsync();
+            return await paginatedQuery.ToListAsync();
         }
 
         public async Task<int> GetFilteredCountAsync(List<int> statusIds, List<int> typeIds)
@@ -102,7 +74,7 @@ namespace BrewFolioServer.Infrastructure.Repository
             return await query.CountAsync();
         }
 
-        public async Task<IEnumerable<BreweryDTO>> SearchBreweriesByLongNameAsync(string query, int maxResults = 10)
+        public async Task<IEnumerable<Brewery>> SearchBreweriesByLongNameAsync(string query, int maxResults = 10)
         {
             query = query.ToLower(); // Convert query to lowercase for case-insensitive search
 
@@ -110,20 +82,6 @@ namespace BrewFolioServer.Infrastructure.Repository
                 .Where(b => EF.Functions.Like(EF.Functions.Collate(b.LongName.ToLower(), "Latin1_General_CI_AI"), $"%{query}%"))
                 .OrderBy(b => b.LongName)
                 .Take(maxResults)
-                .Select(brewery => new BreweryDTO
-                {
-                    Id = brewery.Id,
-                    Name = brewery.Name,
-                    LongName = brewery.LongName,
-                    Type = brewery.Type,
-                    Status = brewery.Status,
-                    Visited = brewery.Visited,
-                    Beers = brewery.Beers.Select(beer => new BeerDTO
-                    {
-                        Id = beer.Id,
-                        Name = beer.Name
-                    }).ToList()
-                })
                 .ToListAsync();
         }
 
@@ -155,7 +113,7 @@ namespace BrewFolioServer.Infrastructure.Repository
         }
 
 
-        public async Task<IEnumerable<BreweryDTO>> GetFilteredAndSearchByLongNameAsync(
+        public async Task<IEnumerable<Brewery>> GetFilteredAndSearchByLongNameAsync(
             List<int> statusIds, 
             List<int> typeIds, 
             string searchQuery, 
@@ -191,20 +149,7 @@ namespace BrewFolioServer.Infrastructure.Repository
                 .Take(pageSize);
 
             // Projecting the result to BreweryDTO
-            return await paginatedQuery.Select(brewery => new BreweryDTO
-            {
-                Id = brewery.Id,
-                Name = brewery.Name,
-                LongName = brewery.LongName,
-                Type = brewery.Type,
-                Status = brewery.Status,
-                Visited = brewery.Visited,
-                Beers = brewery.Beers.Select(beer => new BeerDTO
-                {
-                    Id = beer.Id,
-                    Name = beer.Name
-                }).ToList()
-            }).ToListAsync();
+            return await paginatedQuery.ToListAsync();
         }
 
 
@@ -213,26 +158,12 @@ namespace BrewFolioServer.Infrastructure.Repository
             return await _context.Breweries.CountAsync();
         }
 
-        public async Task<IEnumerable<BreweryDTO>> GetAllAsync()
+        public async Task<IEnumerable<Brewery>> GetAllAsync()
         {
-            return await _context.Breweries
-                .Select(brewery => new BreweryDTO
-                {
-                    Id = brewery.Id,
-                    Name = brewery.Name,
-                    LongName = brewery.LongName,
-                    Type = brewery.Type,
-                    Status = brewery.Status,
-                    Visited = brewery.Visited,
-                    Beers = brewery.Beers.Select(beer => new BeerDTO
-                    {
-                        Id = beer.Id,
-                        Name = beer.Name
-                    }).ToList()
-                }).ToListAsync();
+            return await _context.Breweries.ToListAsync();
         }
 
-        public async Task<BreweryDTO> GetByIdAsync(int id)
+        public async Task<Brewery> GetByIdAsync(int id)
         {
             var brewery = await _context.Breweries
                 .Include(b => b.Type)
@@ -242,20 +173,7 @@ namespace BrewFolioServer.Infrastructure.Repository
 
             if (brewery == null) return null;
 
-            return new BreweryDTO
-            {
-                Id = brewery.Id,
-                Name = brewery.Name,
-                LongName = brewery.LongName,
-                Type = brewery.Type,
-                Status = brewery.Status,
-                Visited = brewery.Visited,
-                Beers = brewery.Beers.Select(beer => new BeerDTO
-                {
-                    Id = beer.Id,
-                    Name = beer.Name
-                }).ToList()
-            };
+            return brewery;
         }
 
         public async Task<Brewery> GetByLongNameAsync(string longName)

@@ -12,24 +12,22 @@ namespace BrewFolioServer.Domain.DTO
         public bool Visited { get; set; }
         public List<BeerDTO>? Beers { get; set; }
 
-        public BreweryDTO() { }
-
-        public BreweryDTO(
-            int id,
-            string name, 
-            string longName, 
-            BreweryType? type, 
-            BreweryStatus? status,
-            bool visited, 
-            List<BeerDTO>? beers)
+        public static BreweryDTO ConvertToBreweryDTO(Brewery brewery)
         {
-            Id = id;
-            Name = name;
-            LongName = longName;
-            Type = type;
-            Status = status;
-            Visited = visited;
-            Beers = beers;
+            return new BreweryDTO
+            {
+                Id = brewery.Id,
+                Name = brewery.Name,
+                LongName = brewery.LongName,
+                Type = brewery.Type,
+                Status = brewery.Status,
+                Visited = brewery.Visited,
+                Beers = brewery.Beers.Select(beer => new BeerDTO
+                {
+                    Id = beer.Id,
+                    Name = beer.Name
+                }).ToList()
+            };
         }
     }
 }

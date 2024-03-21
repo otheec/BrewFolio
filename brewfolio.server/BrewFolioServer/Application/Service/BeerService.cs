@@ -18,7 +18,8 @@ namespace BrewFolioServer.Application.Service
 
         public async Task<IEnumerable<BeerDTO>> GetPaginatedBeersAsync(int pageNumber, int pageSize)
         {
-            return await _beerRepository.GetBeerDTOsPaginatedAsync(pageNumber, pageSize);
+            var beersDTO = await _beerRepository.GetBeersPaginatedAsync(pageNumber, pageSize);
+            return beersDTO.Select(beer => BeerDTO.ConvertToBeerDTO(beer));
         }
 
         public async Task<int> GetTotalBeersCountAsync()
@@ -28,12 +29,14 @@ namespace BrewFolioServer.Application.Service
 
         public async Task<IEnumerable<BeerDTO>> GetAllBeersAsync()
         {
-            return await _beerRepository.GetBeerDTOsAllAsync();
+            var beersDTO = await _beerRepository.GetAllBeersAsync();
+            return beersDTO.Select(beer => BeerDTO.ConvertToBeerDTO(beer));
         }
 
         public async Task<BeerDTO> GetBeerByIdAsync(int id)
         {
-            return await _beerRepository.GetBeersDTOsByIdAsync(id);
+            return BeerDTO.ConvertToBeerDTO(await _beerRepository.GetBeerByIdAsync(id));
+
         }
 
         /*public async Task AddBeerAsync(Beer beer, int breweryId)

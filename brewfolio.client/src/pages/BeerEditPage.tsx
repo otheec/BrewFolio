@@ -47,7 +47,7 @@ const BeerEditPage: React.FC = () => {
         if (!beer) return;
 
         if (beerId && beer) {
-            await BeerService.updateBeer(beer.id, beer, beer.brewery.id);
+            //await BeerService.updateBeer(beer.id, beer, beer.brewery.id);
         } else {
             //await BreweryService.addBrewery(brewery);
         }

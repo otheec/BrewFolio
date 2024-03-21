@@ -18,7 +18,9 @@ namespace BrewFolioServer.Infrastructure.Repository
 
         public async Task<Beer> GetBeerByIdAsync(int id)
         {
-            return await _context.Beers.FirstOrDefaultAsync(b => b.Id == id);
+            return await _context.Beers
+                .Include(b => b.Brewery)
+                .FirstOrDefaultAsync(b => b.Id == id);
         }
 
         public async Task<int> GetTotalCountAsync()
@@ -26,70 +28,21 @@ namespace BrewFolioServer.Infrastructure.Repository
             return await _context.Beers.CountAsync();
         }
 
-        public async Task<IEnumerable<BeerDTO>> GetBeerDTOsPaginatedAsync(int pageNumber, int pageSize)
+        public async Task<IEnumerable<Beer>> GetBeersPaginatedAsync(int pageNumber, int pageSize)
         {
             return await _context.Beers
-                .OrderBy(b => b.Id) // Assuming ordering by Id, adjust as necessary
+                .Include(b => b.Brewery)
+                .OrderBy(b => b.Id)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
-                .Select(beer => new BeerDTO
-                {
-                    Id = beer.Id,
-                    Name = beer.Name,
-                    Brewery = beer.Brewery == null ? null : new BreweryDTO
-                    {
-                        Id = beer.Brewery.Id,
-                        Name = beer.Brewery.Name,
-                        LongName = beer.Brewery.LongName,
-                        Type = null,
-                        Status = null,
-                        Visited = beer.Brewery.Visited,
-                        Beers = null
-                    }
-                }).ToListAsync();
+                .ToListAsync();
         }
 
-        public async Task<IEnumerable<BeerDTO>> GetBeerDTOsAllAsync()
+        public async Task<IEnumerable<Beer>> GetAllBeersAsync()
         {
             return await _context.Beers
-                .Select(beer => new BeerDTO
-                {
-                    Id = beer.Id,
-                    Name = beer.Name,
-                    Brewery = beer.Brewery == null ? null : new BreweryDTO
-                    {
-                        Id = beer.Brewery.Id,
-                        Name = beer.Brewery.Name,
-                        LongName = beer.Brewery.LongName,
-                        Type = null,
-                        Status = null,
-                        Visited = beer.Brewery.Visited,
-                        Beers = null
-                    }
-                }).ToListAsync();
-        }
-
-        public async Task<BeerDTO> GetBeersDTOsByIdAsync(int id)
-        {
-            var beer = await _context.Beers
-                .Where(b => b.Id == id)
-                .Select(b => new BeerDTO
-                {
-                    Id = b.Id,
-                    Name = b.Name,
-                    Brewery = b.Brewery == null ? null : new BreweryDTO
-                    {
-                        Id = b.Brewery.Id,
-                        Name = b.Brewery.Name,
-                        LongName = b.Brewery.LongName,
-                        Type = null,
-                        Status = null,
-                        Visited = b.Brewery.Visited,
-                        Beers = null
-                    }
-                }).SingleOrDefaultAsync();
-
-            return beer;
+                .Include(b => b.Brewery)
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<Beer>> GetBeersByIdsAsync(IEnumerable<int> beerIds)
