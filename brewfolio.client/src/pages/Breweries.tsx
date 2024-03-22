@@ -109,6 +109,8 @@ const Breweries: React.FC = () => {
       <main className="container mb-4 mt-2">
         <div className="my-3 p-3 bg-body-tertiary rounded shadow-sm">
           <h1 className="border-bottom">Breweries</h1>
+
+          {/* Menu options for desktop*/}
           <div className="d-none d-sm-flex pb-2 justify-content-between">
             <div className="d-flex">
               <div className="dropdown pe-2">
@@ -180,6 +182,81 @@ const Breweries: React.FC = () => {
               </Link>
             </div>
           </div>
+
+
+          {/* Menu options for mobile*/}
+          <div className="d-flex flex-column d-sm-none">
+            <div className="d-flex pb-2 justify-content-between">
+              {/* Filters: Will wrap into a single line */}
+              <div className="dropdown pe-2">
+                <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Status Filter
+                </button>
+                <ul className="dropdown-menu">
+                  {statuses.map((status) => (
+                    <li key={status.id} onClick={() => handleFilterClick({ id: status.id, type: 'status', name: status.status })}>
+                      <div className="dropdown-item">
+                        {status.status}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="dropdown">
+                <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Type Filter
+                </button>
+                <ul className="dropdown-menu">
+                  {types.map((type) => (
+                    <li key={type.id} onClick={() => handleFilterClick({ id: type.id, type: 'type', name: type.type })}>
+                      <div className="dropdown-item">
+                        {type.type}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            {/* Search bar */}
+            <div className="input-group mb-2">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Search..."
+                    aria-label="Search"
+                    value={searchQuery}
+                    onBlur={() => setSuggestions([])}
+                    onChange={e => setSearchQuery(e.target.value)}
+                    onKeyPress={e => {
+                      if (e.key === 'Enter') {
+                        setSearchFilter(searchQuery);
+                        setSearchQuery(''); // Clear the search input
+                        e.preventDefault(); // Prevent the form from being submitted
+                      }
+                    }}
+                  />
+                  <span className="input-group-text">
+                    <SearchIcon />
+                  </span>
+                </div>
+                {searchQuery.length >= 2 && suggestions.length > 0 && (
+                  <ul className="list-group" style={{ position: 'absolute', width: '100%', zIndex: 1000 }}>
+                    {suggestions.map((brewery, index) => (
+                      <li key={index} className="list-group-item">
+                        <Link to={`/brewery/${brewery.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
+                          {brewery.longName}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+            {/* Add brewery button */}
+            <Link to={`/brewery/add`} className="btn btn-success w-100 text-nowrap mb-2">+ Add Brewery</Link>
+          </div>
+
+
+
+          {/* Active filters */}
           <div className="active-filters pb-2">
             {/*display active search filter phrase*/}
             {searchFilter === '' ? null :
@@ -196,23 +273,23 @@ const Breweries: React.FC = () => {
           </div>
           {pagination.breweries.map((brewery, index) => (
             <Link to={`/brewery/${brewery.id}`} style={{ textDecoration: 'none', color: "#000000" }} key={index}>
-            <div key={brewery.id} className="d-flex text-muted pt-3">
-              <PlaceholderIcon />
-              <PlaceholderIcon />
-              <div className="pb-3 mb-0 small lh-sm border-bottom w-100">
-                <div className="d-flex justify-content-between">
-                  <Link to={`/brewery/${brewery.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
-                    <strong>{brewery.name}</strong>
-                  </Link>
-                  <div className="ms-auto d-flex justify-content-end">
-                    <Link to={`/brewery/edit/${brewery.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
-                      <button type="button" className="page-link pe-3">Edit</button>
+              <div key={brewery.id} className="d-flex text-muted pt-3">
+                <PlaceholderIcon />
+                <PlaceholderIcon />
+                <div className="pb-3 mb-0 small lh-sm border-bottom w-100">
+                  <div className="d-flex justify-content-between">
+                    <Link to={`/brewery/${brewery.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
+                      <strong>{brewery.name}</strong>
                     </Link>
+                    <div className="ms-auto d-flex justify-content-end">
+                      <Link to={`/brewery/edit/${brewery.id}`} style={{ textDecoration: 'none', color: "#000000" }}>
+                        <button type="button" className="page-link pe-3">Edit</button>
+                      </Link>
+                    </div>
                   </div>
+                  <span className="d-block">{brewery.longName}</span>
                 </div>
-                <span className="d-block">{brewery.longName}</span>
               </div>
-            </div>
             </Link>
           ))}
         </div>

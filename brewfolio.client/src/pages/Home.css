@@ -1,0 +1,23 @@
+.card-image-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 30%; /* Reduced from 50% to make it less high */
+    border-top-left-radius: calc(0.375rem - 1px);
+    border-top-right-radius: calc(0.375rem - 1px);
+}
+
+.card-image-container img, .card-image-container .card-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the area */
+}
+
+.card-image-overlay {
+    /* Adjust the gradient to start from black at the bottom and fade to transparent at the top */
+    background: linear-gradient(to top, rgb(255, 255, 255) 0%, rgba(0,0,0,0) 100%);
+    z-index: 1;
+}

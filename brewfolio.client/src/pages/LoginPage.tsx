@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface Credentials {
   email: string;
@@ -60,7 +60,7 @@ const LoginPage: React.FC = () => {
                 />
                 <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
               </div>
-              <div className="mb-3">
+              <div className="mb-4">
                 <label htmlFor="passwordInput" className="form-label">Password</label>
                 <input
                   type="password"
@@ -72,8 +72,12 @@ const LoginPage: React.FC = () => {
                   required
                 />
               </div>
-              <div className="d-grid gap-2">
+              <div className="d-grid mb-4">
                 <button type="submit" className="btn btn-primary">Login</button>
+              </div>
+              <div className="d-flex justify-content-center align-items-center gap-2">
+                <p className="mb-0">Do not have an account yet?</p>
+                <Link to="/">Register</Link>
               </div>
             </form>
           </div>
