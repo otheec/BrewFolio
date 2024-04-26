@@ -13,6 +13,7 @@ import BreweryPage from './pages/BreweryPage';
 import BeerPage from './pages/BeerPage';
 import BreweryEditPage from './pages/BreweryEditPage';
 import BeerEditPage from './pages/BeerEditPage';
+import HomeNew from './pages/HomeNew';
 
 const App: React.FC = () => {
   return (
@@ -35,6 +36,8 @@ const App: React.FC = () => {
 
         <Route path="/brewery/add" element={<BreweryEditPage />} />
         <Route path="/beer/add" element={<BeerEditPage />} />
+
+        <Route path="/homeNew" element={<HomeNew/>} />
       </Routes>
   </BrowserRouter>
   </div>

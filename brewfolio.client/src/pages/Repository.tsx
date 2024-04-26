@@ -46,7 +46,7 @@ const Repository: React.FC = () => {
                                 <input type="file" onChange={handleFileChange} className="form-control form-control-sm" aria-label="Small file input example"></input>
                             </div>
                             <div className="d-flex justify-content-end">
-                                <button type="button" className="btn btn-outline-secondary" onClick={handleUploadClick}>
+                                <button type="button" className="btn btn-primary" onClick={handleUploadClick}>
                                     Upload
                                 </button>
                             </div>
@@ -57,7 +57,7 @@ const Repository: React.FC = () => {
                                 <p>Export your data efficiently with our CSV download service</p>
                             </div>
                             <div className="d-flex justify-content-end">
-                                <button type="button" className="btn btn-outline-secondary" onClick={handleDownloadClick}>
+                                <button type="button" className="btn btn-primary" onClick={handleDownloadClick}>
                                     Download
                                 </button>
                             </div>
