@@ -234,6 +234,22 @@
   },
   {
     "ContainingType": "BrewFolioServer.WebApi.Controller.BreweryController",
+    "Method": "Delete",
+    "RelativePath": "api/Brewery/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BrewFolioServer.WebApi.Controller.BreweryController",
     "Method": "GetFilteredPaginated",
     "RelativePath": "api/Brewery/filtered",
     "HttpMethod": "GET",

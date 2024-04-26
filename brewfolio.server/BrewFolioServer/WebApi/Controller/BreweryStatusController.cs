@@ -24,6 +24,7 @@ namespace BrewFolioServer.WebApi.Controller
             return Ok(breweryStatuses);
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<BreweryStatus>> Get(int id)
         {
@@ -32,6 +33,7 @@ namespace BrewFolioServer.WebApi.Controller
             return Ok(breweryStatus);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<BreweryStatus>> Post([FromBody] BreweryStatus breweryStatus)
         {
@@ -39,6 +41,7 @@ namespace BrewFolioServer.WebApi.Controller
             return CreatedAtAction(nameof(Get), new { id = breweryStatus.Id }, breweryStatus);
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] BreweryStatus breweryStatus)
         {
@@ -47,6 +50,7 @@ namespace BrewFolioServer.WebApi.Controller
             return NoContent();
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

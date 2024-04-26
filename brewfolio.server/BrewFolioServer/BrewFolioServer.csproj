@@ -18,7 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Domain\DTO\" />
     <Folder Include="Domain\Exception\" />
   </ItemGroup>
 

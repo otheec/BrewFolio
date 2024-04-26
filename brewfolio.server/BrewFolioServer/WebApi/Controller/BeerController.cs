@@ -45,18 +45,6 @@ namespace BrewFolioServer.WebApi.Controller
             return Ok(new { totalCount , beers });
         }
 
-        /*[Authorize]
-        [HttpPost]
-        public async Task<ActionResult<Beer>> Post([FromBody] BeerDTO beerDto, [FromQuery] int breweryId)
-        {
-            var beer = await _beerService.AddBeerAsync(beerDto, breweryId);
-            if (beer == null)
-            {
-                return NotFound("Brewery not found.");
-            }
-            return CreatedAtAction(nameof(Get), new { id = beer.Id });
-        }*/
-
         [Authorize]
         [HttpPost]
         public async Task<ActionResult<Beer>> Post([FromBody] Beer beerDto, [FromQuery] int breweryId)
@@ -66,9 +54,7 @@ namespace BrewFolioServer.WebApi.Controller
             {
                 return NotFound("Brewery not found.");
             }
-            //TODO need paralel get method (unauthorized?) to call to get action result - return type modified
             //return CreatedAtAction(nameof(Get), new { id = beer.Id });
-            //REST principles
             return Ok(new { id = beer.Id });
         }
 
